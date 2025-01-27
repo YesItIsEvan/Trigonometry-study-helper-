@@ -31,7 +31,7 @@ public class ClickBooleans{
    }
    
    public static boolean ExitTriangleFlashcards(int x,int y,boolean[] StudyOptions,boolean[] TriangleFlashcards){
-      if(x > 15 && x < 55 && y > 160 && y < 175 && StudyOptions[1] && FalseBooleanArray(TriangleFlashcards))
+      if(x > 10 && x < 55 && y > 160 && y < 175 && StudyOptions[1] && FalseBooleanArray(TriangleFlashcards))
          return true;
       else
          return false;

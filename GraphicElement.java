@@ -758,12 +758,13 @@ public class GraphicElement{
    ///////  Flashcard Options  ///////
       g.setFont(GraphicVar.promptTitleFont);
       g.drawString("Triangle Flashcards",10,95);
+      g.setColor(GraphicVar.flashcardBackColor());
+      g.drawString("Back",10,175);
       g.setFont(GraphicVar.promptFont);
+      g.setColor(GraphicVar.title());
       g.drawString("90,45,45",15,115);
       g.drawString("90,60,30",15,135);
       g.drawString("Shotgun/ALL",15,155);
-      g.setColor(GraphicVar.flashcardBackColor());
-      g.drawString("Back",15,175);
    }
    
    public static void StudyOptionsPrompt(Graphics g,int FrameHeight){
@@ -801,6 +802,8 @@ public class GraphicElement{
    ///////  Dividers  ///////
       g.setFont(GraphicVar.promptTitleFont);
       g.drawString("Theme",10,95);
+      g.setColor(GraphicVar.flashcardBackColor());
+      g.drawString("Back",10,175);
    //////  Selectors  ///////
       int[] x = {15,20,20};
       int[] y = {105,100,110};
