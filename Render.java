@@ -1,3 +1,5 @@
+import GraphicVar.GraphicVar.ColorPalette;
+import GraphicVar.GraphicVar;
 import javax.swing.*;
 import java.awt.*;
 import java.lang.*;
@@ -24,7 +26,7 @@ public class Render extends JPanel implements Runnable {
    int PythagoreanIdentities[] = new int[2];
    int AllIdentities[] = new int[2];
    ///////  SEAFOAM8,WHITESCAPE,EXOPHOBIA,VIVIDMEMORY8  ///////
-   GraphicVar.ColorPalette palette = GraphicVar.ColorPalette.WHITESCAPE;
+   ColorPalette palette = ColorPalette.WHITESCAPE;
 
    public Render() {
       Start();
@@ -94,13 +96,13 @@ public class Render extends JPanel implements Runnable {
          case(2):
             GraphicElement.SettingsMeny(g,getWidth(),getHeight());
             switch(palette){
-               case(GraphicVar.ColorPalette.VIVIDMEMORY8):
+               case ColorPalette.VIVIDMEMORY8:
                   
                  break;
-               case(GraphicVar.ColorPalette.WHITESCAPE):
+               case ColorPalette.WHITESCAPE:
                   
                  break;
-               case(GraphicVar.ColorPalette.SEAFOAM8):
+               case ColorPalette.SEAFOAM8:
                   
                  break;
              }
