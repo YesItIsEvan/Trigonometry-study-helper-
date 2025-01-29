@@ -19,8 +19,10 @@ public class ClickBooleans{
    }
    
    public static boolean CloseSettings(int x,int y,boolean[] StudyOptions){
-      return false;
-   }
+      if(x > 10 && x < 55 && y < 175 && y > 160 && StudyOptions[2])
+         return true;
+      else
+         return false;   }
    
    ///////  Triangles  ///////
    public static boolean TriangleFlashcardOptions(int x,int y,boolean[] StudyOptions){

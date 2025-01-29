@@ -807,24 +807,45 @@ public class GraphicElement{
       g.setColor(GraphicVar.flashcardBackColor());
       g.drawString("Back",10,175);
    //////  Selectors  ///////
+      g.setColor(GraphicVar.title());
       int[] x = {13,20,20};
       int[] y = {105,98,112};
       g.fillPolygon(x,y,3);
-      x[0] = 117;x[1] = 110;x[2] = 110;
+      x[0] = 217;x[1] = 210;x[2] = 210;
       g.fillPolygon(x,y,3);
    }
 
    public static void PaletteChoice(Graphics g, ColorPalette palette){
       g.setFont(new Font("Helvetica",1,15));
       g.setColor(Color.darkGray);
-      g.fillRect(22,98,86,16);
+      g.fillRect(22,98,186,16);
+      Color[] Palette;
+      String[] Charset;
       switch(palette){
          case WHITESCAPE:
-            g.setColor(new Color(232,227,227));
-            g.drawString("W",25,112);
-            g.setColor(new Color(225,192,169));
-            g.drawString("H",40,112);
-           break;
+            Palette = new Color[]
+                    {new Color(232,227,227),new Color(225,192,169),new Color(225,143,137),
+                     new Color(165,53,81),new Color(67,24,55),new Color(162,179,178),
+                     new Color(95,115,123),new Color(31,35,46),new Color(0,0,0),
+                     new Color(232,227,227)};
+            Charset = new String[]{"W","H","I","T","E","S","C","A","P","E"};
+            for(int i=0;i<Palette.length;i++){
+               g.setColor(Palette[i]);
+               g.drawString(Charset[i],25+(15*i),112);
+            }
+            break;
+         case VIVIDMEMORY8:
+            Palette = new Color[]
+                    {new Color(56,22,49),new Color(226,28,97),new Color(226,97,89),
+                     new Color(254,168,95),new Color(216,220,180),new Color(94,182,173),
+                     new Color(27,149,141),new Color(16,83,144),new Color(56,22,49),
+                     new Color(226,28,97),new Color(226,97,89),new Color(254,168,95)};
+            Charset = new String[]{"V","I","V","I","D","M","E","M","O","R","Y","8"};
+            for(int i=0;i<Palette.length;i++){
+               g.setColor(Palette[i]);
+               g.drawString(Charset[i],25+(15*i),112);
+            }
+            break;
       }
    }
    

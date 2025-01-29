@@ -28,7 +28,7 @@ public class Render extends JPanel implements Runnable {
    int[] PythagoreanIdentities = new int[2];
    int[] AllIdentities = new int[2];
    ///////  SEAFOAM8,WHITESCAPE,EXOPHOBIA,VIVIDMEMORY8  ///////
-   ColorPalette palette = ColorPalette.WHITESCAPE;
+   ColorPalette palette = ColorPalette.VIVIDMEMORY8;
 
    public Render() {
       Start();
@@ -157,7 +157,7 @@ public class Render extends JPanel implements Runnable {
       mouse.mcd = false;
    }
 
-   ////  Checks if the mouse click was in the range of an opption  ////
+   ////  Checks if the mouse click was in the range of an option  ////
    public void CheckBoxes(int x,int y){
       ///  Tell the click boolean class the size of the window  ///
       ClickBooleans.WindowSize(getWidth(),getHeight());
