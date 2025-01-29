@@ -27,8 +27,10 @@ public class Render extends JPanel implements Runnable {
    int[] QuotientIdentities = new int[2];
    int[] PythagoreanIdentities = new int[2];
    int[] AllIdentities = new int[2];
+   ColorPalette[] paletteWheel = {ColorPalette.VIVIDMEMORY8,ColorPalette.WHITESCAPE};
    ///////  SEAFOAM8,WHITESCAPE,EXOPHOBIA,VIVIDMEMORY8  ///////
-   ColorPalette palette = ColorPalette.WHITESCAPE;
+   ColorPalette palette = ColorPalette.VIVIDMEMORY8;
+   int palette_int = 0;
 
    public Render() {
       Start();
@@ -128,6 +130,8 @@ public class Render extends JPanel implements Runnable {
          if(Mouse_Clicked){
          CheckMouse();
          }
+
+         palette = paletteWheel[palette_int];
                            
          repaint();
       
@@ -165,6 +169,10 @@ public class Render extends JPanel implements Runnable {
       ///  Settings  ///
       if(ClickBooleans.OpenSettings(x,y,StudyOptions))
          SettingsMenu = true;
+      else if(ClickBooleans.SwitchThemeRight(x,y,StudyOptions))
+         SwitchPaletteWheel(dir.Right);
+      else if(ClickBooleans.SwitchThemeLeft(x,y,StudyOptions))
+         SwitchPaletteWheel(dir.Left);
       else if(ClickBooleans.CloseSettings(x,y,StudyOptions))
          SettingsMenu = false;
       
@@ -328,7 +336,7 @@ public class Render extends JPanel implements Runnable {
    
    public void RecipricalIdentitiesL(boolean show){
       IdentityFlashcards[0] = show;
-      RandomRecipricalIdentity(); // chooses random reciprical identity :)
+      RandomRecipricalIdentity(); // chooses random reciprocal identity :)
    }
 
    public void PythagoreanIdentitiesL(boolean show){
@@ -415,7 +423,25 @@ public class Render extends JPanel implements Runnable {
       else if(AllIdentities[1] == 1)
          AllIdentities[1] = 2;
    }
-   
+
+   public enum dir {
+      Right,Left
+   }
+
+   public void SwitchPaletteWheel(dir rot){
+      switch(rot){
+         case Right:
+            palette_int++;
+            if(palette_int==paletteWheel.length)
+               palette_int = 0;
+           break;
+         case Left:
+            palette_int--;
+            if(palette_int<0)
+               palette_int = paletteWheel.length-1;
+           break;
+      }
+   }
    
    public static int random(int min, int max)
    {

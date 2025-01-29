@@ -19,7 +19,14 @@ public class ClickBooleans{
    }
 
    public static boolean SwitchThemeRight(int x,int y,boolean[] StudyOptions){
-      if(x > 10 && x < 55 && y < 175 && y > 160 && StudyOptions[2])
+      if(x > 210 && x < 220 && y < 113 && y > 98 && StudyOptions[2])
+         return true;
+      else
+         return false;
+   }
+
+   public static boolean SwitchThemeLeft(int x,int y,boolean[] StudyOptions){
+      if(x > 10 && x < 20 && y < 113 && y > 98 && StudyOptions[2])
          return true;
       else
          return false;
