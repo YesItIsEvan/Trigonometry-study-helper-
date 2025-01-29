@@ -28,7 +28,7 @@ public class Render extends JPanel implements Runnable {
    int[] PythagoreanIdentities = new int[2];
    int[] AllIdentities = new int[2];
    ///////  SEAFOAM8,WHITESCAPE,EXOPHOBIA,VIVIDMEMORY8  ///////
-   ColorPalette palette = ColorPalette.VIVIDMEMORY8;
+   ColorPalette palette = ColorPalette.WHITESCAPE;
 
    public Render() {
       Start();

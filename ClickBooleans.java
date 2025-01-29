@@ -17,13 +17,21 @@ public class ClickBooleans{
       else
          return false;
    }
-   
+
+   public static boolean SwitchThemeRight(int x,int y,boolean[] StudyOptions){
+      if(x > 10 && x < 55 && y < 175 && y > 160 && StudyOptions[2])
+         return true;
+      else
+         return false;
+   }
+
    public static boolean CloseSettings(int x,int y,boolean[] StudyOptions){
       if(x > 10 && x < 55 && y < 175 && y > 160 && StudyOptions[2])
          return true;
       else
-         return false;   }
-   
+         return false;
+   }
+
    ///////  Triangles  ///////
    public static boolean TriangleFlashcardOptions(int x,int y,boolean[] StudyOptions){
       if(x > 15 && x < 190 && y > 120 && y < 135 && FalseBooleanArray(StudyOptions))
