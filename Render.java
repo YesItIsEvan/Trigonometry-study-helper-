@@ -1,5 +1,7 @@
-import GraphicVar.GraphicVar.ColorPalette;
-import GraphicVar.GraphicVar;
+import Graphic.GraphicElement;
+import Graphic.GraphicVar.ColorPalette;
+import Graphic.GraphicVar;
+import Graphic.GraphicElement;
 import javax.swing.*;
 import java.awt.*;
 import java.lang.*;
@@ -15,16 +17,16 @@ public class Render extends JPanel implements Runnable {
    int Mouse_y;
    boolean Mouse_Clicked = false;   
    boolean SettingsMenu = false;   
-   boolean StudyOptions[] = new boolean[3];
-   boolean IdentityFlashcards[] = new boolean[4];
-   boolean TriangleFlashcards[] = new boolean[3];
-   int fortyfiveRightTriangle[] = new int[2];
-   int sixtyRightTriangle[] = new int[2];
-   int allRightTriangle[] = new int[2];
-   int RecipricalIdentities[] = new int[2];
-   int QuotientIdentities[] = new int[2];
-   int PythagoreanIdentities[] = new int[2];
-   int AllIdentities[] = new int[2];
+   boolean[] StudyOptions = new boolean[3];
+   boolean[] IdentityFlashcards = new boolean[4];
+   boolean[] TriangleFlashcards = new boolean[3];
+   int[] fortyfiveRightTriangle = new int[2];
+   int[] sixtyRightTriangle = new int[2];
+   int[] allRightTriangle = new int[2];
+   int[] RecipricalIdentities = new int[2];
+   int[] QuotientIdentities = new int[2];
+   int[] PythagoreanIdentities = new int[2];
+   int[] AllIdentities = new int[2];
    ///////  SEAFOAM8,WHITESCAPE,EXOPHOBIA,VIVIDMEMORY8  ///////
    ColorPalette palette = ColorPalette.WHITESCAPE;
 
@@ -97,13 +99,13 @@ public class Render extends JPanel implements Runnable {
             GraphicElement.SettingsMeny(g,getWidth(),getHeight());
             switch(palette){
                case ColorPalette.VIVIDMEMORY8:
-                  
+                  GraphicElement.PaletteChoice(g,ColorPalette.VIVIDMEMORY8);
                  break;
                case ColorPalette.WHITESCAPE:
-                  
+                  GraphicElement.PaletteChoice(g,ColorPalette.WHITESCAPE);
                  break;
                case ColorPalette.SEAFOAM8:
-                  
+                  GraphicElement.PaletteChoice(g,ColorPalette.SEAFOAM8);
                  break;
              }
            break;

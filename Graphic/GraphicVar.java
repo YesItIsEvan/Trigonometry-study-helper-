@@ -1,7 +1,5 @@
-package GraphicVar;
-
+package Graphic;
 import java.awt.*;
-
 
 public class GraphicVar{
 
