@@ -846,6 +846,18 @@ public class GraphicElement{
                g.drawString(Charset[i],25+(15*i),112);
             }
             break;
+         case SEAFOAM8:
+            Palette = new Color[]
+                    {new Color(56,22,49),new Color(226,28,97),new Color(226,97,89),
+                     new Color(254,168,95),new Color(216,220,180),new Color(94,182,173),
+                     new Color(27,149,141),new Color(16,83,144),new Color(56,22,49),
+                     new Color(226,28,97),new Color(226,97,89),new Color(254,168,95)};
+            Charset = new String[]{"S","E","A","F","O","A","M","8"};
+            for(int i=0;i<Palette.length;i++){
+               g.setColor(Palette[i]);
+               g.drawString(Charset[i],25+(15*i),112);
+            }
+            break;
       }
    }
    
