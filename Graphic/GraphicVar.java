@@ -20,7 +20,7 @@ public class GraphicVar{
          case VIVIDMEMORY8:
             return new Color(173,215,156);
          case SEAFOAM8:
-         
+            return new Color(189,200,200);
          case WHITESCAPE:
             return new Color(165,53,81);
          case EXOPHOBIA:
@@ -35,7 +35,7 @@ public class GraphicVar{
          case VIVIDMEMORY8:
             return new Color(60,150,145);
          case SEAFOAM8:
-         
+            return new Color(167,167,167);
          case WHITESCAPE:
             return new Color(95,115,123);
          case EXOPHOBIA:
@@ -50,7 +50,7 @@ public class GraphicVar{
          case VIVIDMEMORY8:
             return new Color(0,0,0);
          case SEAFOAM8:
-         
+            return new Color(50,63,77);
          case WHITESCAPE:
             return new Color(31,35,46);
          case EXOPHOBIA:
@@ -65,7 +65,7 @@ public class GraphicVar{
          case VIVIDMEMORY8:
             return new Color(50,60,60);
          case SEAFOAM8:
-         
+            return new Color(120,120,120);
          case WHITESCAPE:
             return new Color(0,0,0);
          case EXOPHOBIA:
@@ -80,7 +80,7 @@ public class GraphicVar{
          case VIVIDMEMORY8:
             return new Color(247,214,155);
          case SEAFOAM8:
-         
+            return new Color(200,200,200);
          case WHITESCAPE:
             return new Color(232,227,227);
          case EXOPHOBIA:
@@ -95,7 +95,7 @@ public class GraphicVar{
          case VIVIDMEMORY8:
             return new Color(50,75,110);
          case SEAFOAM8:
-         
+            return new Color(50,63,77);
          case WHITESCAPE:
             return new Color(162,179,178);
          case EXOPHOBIA:
@@ -110,7 +110,7 @@ public class GraphicVar{
          case VIVIDMEMORY8:
             return new Color(210,70,70);
          case SEAFOAM8:
-         
+            return new Color(56,56,56);
          case WHITESCAPE:
             return new Color(67,24,55);
          case EXOPHOBIA:

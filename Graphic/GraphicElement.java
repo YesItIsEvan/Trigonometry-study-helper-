@@ -746,13 +746,14 @@ public class GraphicElement{
    ///////  Flashcard Options  ///////
       g.setFont(GraphicVar.promptTitleFont);
       g.drawString("Identity Flashcards",10,95);
+      g.setColor(GraphicVar.flashcardBackColor());
+      g.drawString("Back",10,195);
       g.setFont(GraphicVar.promptFont);
+      g.setColor(GraphicVar.title());
       g.drawString("Reciprical",15,115);
       g.drawString("Quotient",15,135);
       g.drawString("Pythagorean",15,155);
       g.drawString("Shotgun/ALL",15,175);
-      g.setColor(GraphicVar.flashcardBackColor());
-      g.drawString("Back",15,195);
    }
 
    public static void TriangleFlashcardsG(Graphics g){
@@ -817,8 +818,8 @@ public class GraphicElement{
 
    public static void PaletteChoice(Graphics g, ColorPalette palette){
       g.setFont(new Font("Helvetica",1,15));
-      g.setColor(Color.darkGray);
-      g.fillRect(22,98,186,16);
+      g.setColor(Color.darkGray);///////////////////////////put in other cases it is too dark for SEAFOAM8
+      g.fillRect(22,98,186,16);///////////////////////////////////////
       Color[] Palette;
       String[] Charset;
       switch(palette){
@@ -848,10 +849,9 @@ public class GraphicElement{
             break;
          case SEAFOAM8:
             Palette = new Color[]
-                    {new Color(56,22,49),new Color(226,28,97),new Color(226,97,89),
-                     new Color(254,168,95),new Color(216,220,180),new Color(94,182,173),
-                     new Color(27,149,141),new Color(16,83,144),new Color(56,22,49),
-                     new Color(226,28,97),new Color(226,97,89),new Color(254,168,95)};
+                    {new Color(50,63,77),new Color(109,120,131),new Color(152,167,175),
+                     new Color(186,200,200),new Color(56,56,56),new Color(120,120,120),
+                     new Color(167,167,167),new Color(200,200,200)};
             Charset = new String[]{"S","E","A","F","O","A","M","8"};
             for(int i=0;i<Palette.length;i++){
                g.setColor(Palette[i]);
