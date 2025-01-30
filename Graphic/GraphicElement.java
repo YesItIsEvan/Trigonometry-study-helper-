@@ -818,12 +818,12 @@ public class GraphicElement{
 
    public static void PaletteChoice(Graphics g, ColorPalette palette){
       g.setFont(new Font("Helvetica",1,15));
-      g.setColor(Color.darkGray);///////////////////////////put in other cases it is too dark for SEAFOAM8
-      g.fillRect(22,98,186,16);///////////////////////////////////////
       Color[] Palette;
       String[] Charset;
       switch(palette){
          case WHITESCAPE:
+            g.setColor(Color.darkGray);
+            g.fillRect(22,98,186,16);
             Palette = new Color[]
                     {new Color(232,227,227),new Color(225,192,169),new Color(225,143,137),
                      new Color(165,53,81),new Color(67,24,55),new Color(162,179,178),
@@ -836,6 +836,8 @@ public class GraphicElement{
             }
             break;
          case VIVIDMEMORY8:
+            g.setColor(Color.darkGray);
+            g.fillRect(22,98,186,16);
             Palette = new Color[]
                     {new Color(56,22,49),new Color(226,28,97),new Color(226,97,89),
                      new Color(254,168,95),new Color(216,220,180),new Color(94,182,173),
@@ -848,6 +850,8 @@ public class GraphicElement{
             }
             break;
          case SEAFOAM8:
+            g.setColor(Color.gray);
+            g.fillRect(22,98,186,16);
             Palette = new Color[]
                     {new Color(50,63,77),new Color(109,120,131),new Color(152,167,175),
                      new Color(186,200,200),new Color(56,56,56),new Color(120,120,120),
