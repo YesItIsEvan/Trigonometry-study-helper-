@@ -1,7 +1,6 @@
 import Graphic.GraphicElement;
 import Graphic.GraphicVar.ColorPalette;
 import Graphic.GraphicVar;
-import Graphic.GraphicElement;
 import javax.swing.*;
 import java.awt.*;
 import java.lang.*;
@@ -120,8 +119,7 @@ public class Render extends JPanel implements Runnable {
       long period = 1000/120;
       long beginTime = System.currentTimeMillis();
       long currentTime;
-      float deltaTime = 0;
-      while(true) {
+       while(true) {
       
          Mouse_Clicked = mouse.mcd;
          
@@ -146,8 +144,7 @@ public class Render extends JPanel implements Runnable {
          
          } catch (InterruptedException ex) {}
          currentTime = System.currentTimeMillis();
-         deltaTime = (float) (currentTime - beginTime) / 1000;
-         beginTime = currentTime;
+           beginTime = currentTime;
       }
    }
    
@@ -166,53 +163,60 @@ public class Render extends JPanel implements Runnable {
       ///  Tell the click boolean class the size of the window  ///
       ClickBooleans.WindowSize(getWidth(),getHeight());
       
-      ///  Settings  ///
-      if(ClickBooleans.OpenSettings(x,y,StudyOptions))
-         SettingsMenu = true;
-      else if(ClickBooleans.SwitchThemeRight(x,y,StudyOptions))
-         SwitchPaletteWheel(dir.Right);
-      else if(ClickBooleans.SwitchThemeLeft(x,y,StudyOptions))
-         SwitchPaletteWheel(dir.Left);
-      else if(ClickBooleans.CloseSettings(x,y,StudyOptions))
-         SettingsMenu = false;
-      
-      ///  Triangles  ///
-      else if(ClickBooleans.TriangleFlashcardOptions(x,y,StudyOptions))
-         TriangleFlashcardsL(true);
-      ///  Triangles' Back  ///
-      else if(ClickBooleans.ExitTriangleFlashcards(x,y,StudyOptions,TriangleFlashcards))
-         TriangleFlashcardsL(false);
-      ///  90,45,45  ///
-      else if(ClickBooleans.TriangleFlashcardOption1(x,y,StudyOptions,TriangleFlashcards))
-         FortyFiveTriangleRatiosL(true);
-      else if(ClickBooleans.TriangleFlashcardOption1Flip(x,y,StudyOptions,TriangleFlashcards))
-         FlipFortyFiveRatio();
-      else if(ClickBooleans.ExitTriangleFlashcardOption1(x,y,StudyOptions,TriangleFlashcards))
-         FortyFiveTriangleRatiosL(false);
-      else if(ClickBooleans.TriangleFlashcardOption1Shuffle(x,y,StudyOptions,TriangleFlashcards))
-         RandomFortyFiveTriangleRatios();
-      ///  90,60,30  ///
-      else if(ClickBooleans.TriangleFlashcardOption2(x,y,StudyOptions,TriangleFlashcards))
-         SixtyTriangleRatiosL(true);
-      else if(ClickBooleans.TriangleFlashcardOption2Flip(x,y,StudyOptions,TriangleFlashcards))
-         FlipSixtyRatio();
-      else if(ClickBooleans.ExitTriangleFlashcardOption2(x,y,StudyOptions,TriangleFlashcards))
-         SixtyTriangleRatiosL(false);
-      else if(ClickBooleans.TriangleFlashcardOption2Shuffle(x,y,StudyOptions,TriangleFlashcards))
-         RandomSixtyTriangleRatios();
-      ///  All Triangles  ///
-      else if(ClickBooleans.TriangleFlashcardOption3(x,y,StudyOptions,TriangleFlashcards))
-         AllTriangleRatiosL(true);
-      else if(ClickBooleans.TriangleFlashcardOption3Flip(x,y,StudyOptions,TriangleFlashcards))
-         FlipAllRatio();
-      else if(ClickBooleans.ExitTriangleFlashcardOption3(x,y,StudyOptions,TriangleFlashcards))
-         AllTriangleRatiosL(false);
-      else if(ClickBooleans.TriangleFlashcardOption3Shuffle(x,y,StudyOptions,TriangleFlashcards))
-         RandomTriangleRatios();
-         
+      ///  Home  ///
+      if(ClickBooleans.Home(StudyOptions)) {
+         if (ClickBooleans.OpenSettings(x, y))
+            SettingsMenu = true;
+         else if (ClickBooleans.TriangleFlashcardOptions(x, y))
+            TriangleFlashcardsL(true);
+         else if (ClickBooleans.IdentitiyFlashcardOptions(x, y))
+            IdentityFlashcardsL(true);
+      }
+      ///   Settings  ///
+      else if(ClickBooleans.Settings(StudyOptions)) {
+         if (ClickBooleans.SwitchThemeRight(x, y))
+            SwitchPaletteWheel(dir.Right);
+         else if (ClickBooleans.SwitchThemeLeft(x, y))
+            SwitchPaletteWheel(dir.Left);
+         else if (ClickBooleans.CloseSettings(x, y))
+            SettingsMenu = false;
+      }
+      ///   Triangles  ///
+      else if(ClickBooleans.TriangleFlashcards(StudyOptions)) {
+         if (ClickBooleans.ExitTriangleFlashcards(x, y, TriangleFlashcards))
+            TriangleFlashcardsL(false);
+
+         ///  90,45,45  ///
+         else if (ClickBooleans.StudyFortyFiveTriangleFlashcards(x, y, TriangleFlashcards))
+            FortyFiveTriangleRatiosL(true);
+         else if (ClickBooleans.FlipFortyFiveCard(x, y, TriangleFlashcards))
+            FlipFortyFiveRatio();
+         else if (ClickBooleans.ExitFortyFiveFlashcards(x, y, TriangleFlashcards))
+            FortyFiveTriangleRatiosL(false);
+         else if (ClickBooleans.NextFortyFiveCard(x, y, TriangleFlashcards))
+            RandomFortyFiveTriangleRatios();
+
+         ///  90,60,30  ///
+         else if (ClickBooleans.TriangleFlashcardOption2(x, y, TriangleFlashcards))
+            SixtyTriangleRatiosL(true);
+         else if (ClickBooleans.TriangleFlashcardOption2Flip(x, y, TriangleFlashcards))
+            FlipSixtyRatio();
+         else if (ClickBooleans.ExitTriangleFlashcardOption2(x, y, TriangleFlashcards))
+            SixtyTriangleRatiosL(false);
+         else if (ClickBooleans.TriangleFlashcardOption2Shuffle(x, y, TriangleFlashcards))
+            RandomSixtyTriangleRatios();
+
+         ///  All Triangles  ///
+         else if (ClickBooleans.TriangleFlashcardOption3(x, y, TriangleFlashcards))
+            AllTriangleRatiosL(true);
+         else if (ClickBooleans.TriangleFlashcardOption3Flip(x, y, TriangleFlashcards))
+            FlipAllRatio();
+         else if (ClickBooleans.ExitTriangleFlashcardOption3(x, y, TriangleFlashcards))
+            AllTriangleRatiosL(false);
+         else if (ClickBooleans.TriangleFlashcardOption3Shuffle(x, y, TriangleFlashcards))
+            RandomTriangleRatios();
+      }
       ///  Identities  ///
-      else if(ClickBooleans.IdentitiyFlashcardOptions(x,y,StudyOptions))
-         IdentityFlashcardsL(true);
       ///  Identities' Back  ///
       else if(ClickBooleans.ExitIdentityFlashcards(x,y,StudyOptions,IdentityFlashcards))
          IdentityFlashcardsL(false);
@@ -446,7 +450,6 @@ public class Render extends JPanel implements Runnable {
    public static int random(int min, int max)
    {
       int range = max - min + 1;
-      int number = (int) (range * Math.random() + min);
-      return number;
+      return (int) (range * Math.random() + min);
    }
 }

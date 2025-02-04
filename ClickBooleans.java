@@ -9,74 +9,96 @@ public class ClickBooleans{
       WindowWidth = WindowX;
       WindowHeight = WindowY;
    }
-   
+
+   public static boolean Home(boolean[] StudyOptions){
+      if(FalseBooleanArray(StudyOptions))
+         return true;
+      else
+         return false;
+   }
+
+   public static boolean Settings(boolean[] StudyOptions){
+      if(StudyOptions[2])
+         return true;
+      else
+         return false;
+   }
+
+   public static boolean TriangleFlashcards(boolean[] StudyOptions){
+      if(StudyOptions[1])
+         return true;
+      else
+         return false;
+   }
+
+
    ///////  Settings  ///////
-   public static boolean OpenSettings(int x,int y,boolean[] StudyOptions){
-      if(x > 10 && x < 75 && y < (WindowHeight-25) && y > (WindowHeight-40) && FalseBooleanArray(StudyOptions))
+   public static boolean OpenSettings(int x,int y){
+      if(x > 10 && x < 75 && y < (WindowHeight-25) && y > (WindowHeight-40))
          return true;
       else
          return false;
    }
 
-   public static boolean SwitchThemeRight(int x,int y,boolean[] StudyOptions){
-      if(x > 210 && x < 220 && y < 113 && y > 98 && StudyOptions[2])
+   public static boolean SwitchThemeRight(int x,int y){
+      if(x > 210 && x < 220 && y < 113 && y > 98)
          return true;
       else
          return false;
    }
 
-   public static boolean SwitchThemeLeft(int x,int y,boolean[] StudyOptions){
-      if(x > 10 && x < 20 && y < 113 && y > 98 && StudyOptions[2])
+   public static boolean SwitchThemeLeft(int x,int y){
+      if(x > 10 && x < 20 && y < 113 && y > 98)
          return true;
       else
          return false;
    }
 
-   public static boolean CloseSettings(int x,int y,boolean[] StudyOptions){
-      if(x > 10 && x < 55 && y < 175 && y > 160 && StudyOptions[2])
+   public static boolean CloseSettings(int x,int y){
+      if(x > 10 && x < 55 && y < 175 && y > 160)
          return true;
       else
          return false;
    }
 
    ///////  Triangles  ///////
-   public static boolean TriangleFlashcardOptions(int x,int y,boolean[] StudyOptions){
-      if(x > 15 && x < 190 && y > 120 && y < 135 && FalseBooleanArray(StudyOptions))
+   public static boolean TriangleFlashcardOptions(int x,int y){
+      if(x > 15 && x < 190 && y > 120 && y < 135)
          return true;
       else
          return false;
    }
    
-   public static boolean ExitTriangleFlashcards(int x,int y,boolean[] StudyOptions,boolean[] TriangleFlashcards){
-      if(x > 10 && x < 55 && y > 160 && y < 175 && StudyOptions[1] && FalseBooleanArray(TriangleFlashcards))
+   public static boolean ExitTriangleFlashcards(int x,int y,boolean[] TriangleFlashcards){
+      if(x > 10 && x < 55 && y > 160 && y < 175 && FalseBooleanArray(TriangleFlashcards))
          return true;
       else
          return false;
    }
    
-   public static boolean TriangleFlashcardOption1(int x,int y,boolean[] StudyOptions,boolean[] TriangleFlashcards){
-      if(x > 15 && x < 80 && y > 100 && y < 115 && StudyOptions[1] && FalseBooleanArray(TriangleFlashcards))
+   public static boolean StudyFortyFiveTriangleFlashcards(int x,int y,boolean[] TriangleFlashcards){
+      if(x > 15 && x < 80 && y > 100 && y < 115 && FalseBooleanArray(TriangleFlashcards))
          return true;
       else
          return false;
    }
    
-   public static boolean TriangleFlashcardOption1Flip(int x,int y,boolean[] StudyOptions,boolean[] TriangleFlashcards){
-      if(x > (WindowWidth/2)+90 && x < (WindowWidth/2)+150 && y > (WindowHeight/2)+85 && y < (WindowHeight/2)+115 && StudyOptions[1] && TriangleFlashcards[0])
+   public static boolean FlipFortyFiveCard(int x,int y,boolean[] TriangleFlashcards){
+      if(x > (WindowWidth/2)+90 && x < (WindowWidth/2)+150 && y > (WindowHeight/2)+85 && y < (WindowHeight/2)+115 && TriangleFlashcards[0])
          return true;
       else
          return false;
    }
 
-   public static boolean ExitTriangleFlashcardOption1(int x,int y,boolean[] StudyOptions,boolean[] TriangleFlashcards){
-      if(x > (WindowWidth/2)-252 && x < (WindowWidth/2)-180 && y > (WindowHeight/2)+68 && y < (WindowHeight/2)+92 && StudyOptions[1] && TriangleFlashcards[0])
+   public static boolean ExitFortyFiveFlashcards(int x,int y,boolean[] TriangleFlashcards){
+      if(x > (WindowWidth/2)-252 && x < (WindowWidth/2)-180 && y > (WindowHeight/2)+68 && y < (WindowHeight/2)+92 && TriangleFlashcards[0])
          return true;
       else
          return false;
    }
    
-   public static boolean TriangleFlashcardOption1Shuffle(int x,int y,boolean[] StudyOptions,boolean[] TriangleFlashcards){
-      if(x > (WindowWidth/2)+153 && x < (WindowWidth/2)+218 && y > (WindowHeight/2)+68 && y < (WindowHeight/2)+92 && StudyOptions[1] && TriangleFlashcards[0])
+   public static boolean NextFortyFiveCard(int x,int y,boolean[] TriangleFlashcards){
+      if(x > (WindowWidth/2)+153 && x < (WindowWidth/2)+218 && y > (WindowHeight/2)+68 && y < (WindowHeight/2)+92 && TriangleFlashcards[0])
          return true;
       else
          return false;
@@ -139,8 +161,8 @@ public class ClickBooleans{
    }
    
    ///////  Identities  ///////
-   public static boolean IdentitiyFlashcardOptions(int x,int y,boolean[] StudyOptions){
-      if(x > 15 && x < 190 && y > 100 && y < 115 && FalseBooleanArray(StudyOptions))
+   public static boolean IdentitiyFlashcardOptions(int x,int y){
+      if(x > 15 && x < 190 && y > 100 && y < 115)
          return true;
       else
          return false;
