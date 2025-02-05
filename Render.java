@@ -167,9 +167,9 @@ public class Render extends JPanel implements Runnable {
       if(ClickBooleans.Home(StudyOptions)) {
          if (ClickBooleans.OpenSettings(x, y))
             SettingsMenu = true;
-         else if (ClickBooleans.TriangleFlashcardOptions(x, y))
+         else if (ClickBooleans.TriangleFlashcards(x, y))
             TriangleFlashcardsL(true);
-         else if (ClickBooleans.IdentitiyFlashcardOptions(x, y))
+         else if (ClickBooleans.IdentitiyFlashcards(x, y))
             IdentityFlashcardsL(true);
       }
       ///   Settings  ///
@@ -197,23 +197,23 @@ public class Render extends JPanel implements Runnable {
             RandomFortyFiveTriangleRatios();
 
          ///  90,60,30  ///
-         else if (ClickBooleans.TriangleFlashcardOption2(x, y, TriangleFlashcards))
+         else if (ClickBooleans.StudySixtyTriangleFlashcards(x, y, TriangleFlashcards))
             SixtyTriangleRatiosL(true);
-         else if (ClickBooleans.TriangleFlashcardOption2Flip(x, y, TriangleFlashcards))
+         else if (ClickBooleans.FlipSixtyCard(x, y, TriangleFlashcards))
             FlipSixtyRatio();
-         else if (ClickBooleans.ExitTriangleFlashcardOption2(x, y, TriangleFlashcards))
+         else if (ClickBooleans.ExitSixtyFlashcards(x, y, TriangleFlashcards))
             SixtyTriangleRatiosL(false);
-         else if (ClickBooleans.TriangleFlashcardOption2Shuffle(x, y, TriangleFlashcards))
+         else if (ClickBooleans.NextSixtyCard(x, y, TriangleFlashcards))
             RandomSixtyTriangleRatios();
 
          ///  All Triangles  ///
-         else if (ClickBooleans.TriangleFlashcardOption3(x, y, TriangleFlashcards))
+         else if (ClickBooleans.StudyAllTriangleFlashcards(x, y, TriangleFlashcards))
             AllTriangleRatiosL(true);
-         else if (ClickBooleans.TriangleFlashcardOption3Flip(x, y, TriangleFlashcards))
+         else if (ClickBooleans.FlipAllCard(x, y, TriangleFlashcards))
             FlipAllRatio();
-         else if (ClickBooleans.ExitTriangleFlashcardOption3(x, y, TriangleFlashcards))
+         else if (ClickBooleans.ExitAllFlashcards(x, y, TriangleFlashcards))
             AllTriangleRatiosL(false);
-         else if (ClickBooleans.TriangleFlashcardOption3Shuffle(x, y, TriangleFlashcards))
+         else if (ClickBooleans.NextAllCard(x, y, TriangleFlashcards))
             RandomTriangleRatios();
       }
       ///  Identities  ///
