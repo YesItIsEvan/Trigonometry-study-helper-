@@ -24,13 +24,6 @@ public class ClickBooleans{
          return false;
    }
 
-   public static boolean TriangleFlashcards(boolean[] StudyOptions){
-      if(StudyOptions[1])
-         return true;
-      else
-         return false;
-   }
-
 
    ///////  Settings  ///////
    public static boolean OpenSettings(int x,int y){
@@ -62,6 +55,13 @@ public class ClickBooleans{
    }
 
    ///////  Triangles  ///////
+   public static boolean TriangleFlashcards(boolean[] StudyOptions){
+      if(StudyOptions[1])
+         return true;
+      else
+         return false;
+   }
+
    public static boolean TriangleFlashcards(int x,int y){
       if(x > 15 && x < 190 && y > 120 && y < 135)
          return true;
@@ -161,28 +161,35 @@ public class ClickBooleans{
    }
    
    ///////  Identities  ///////
-   public static boolean IdentitiyFlashcards(int x,int y){
+   public static boolean IdentityFlashcards(boolean[] StudyOptions){
+      if(StudyOptions[0])
+         return true;
+      else
+         return false;
+   }
+
+   public static boolean IdentityFlashcards(int x, int y){
       if(x > 15 && x < 190 && y > 100 && y < 115)
          return true;
       else
          return false;
    }
 
-   public static boolean ExitIdentityFlashcards(int x,int y,boolean[] StudyOptions,boolean[] IdentityFlashcards){
-      if(x > 15 && x < 55 && y > 180 && y < 195 && StudyOptions[0] && FalseBooleanArray(IdentityFlashcards))
+   public static boolean ExitIdentityFlashcards(int x,int y,boolean[] IdentityFlashcards){
+      if(x > 15 && x < 55 && y > 180 && y < 195 && FalseBooleanArray(IdentityFlashcards))
          return true;
       else
          return false;
    }
    
-   public static boolean IdentityFlashcardOption1(int x,int y,boolean[] StudyOptions,boolean[] IdentityFlashcards){
+   public static boolean IdentityFlashcardOption1(int x,int y,boolean[] IdentityFlashcards){
       if(x > 15 && x < 93 && y > 100 && y < 115 && StudyOptions[0] && FalseBooleanArray(IdentityFlashcards))
          return true;
       else 
          return false;
    }
    
-   public static boolean IdentityFlashcardOption1Flip(int x,int y,boolean[] StudyOptions,boolean[] IdentityFlashcards){
+   public static boolean IdentityFlashcardOption1Flip(int x,int y,boolean[] IdentityFlashcards){
       if(x > (WindowWidth/2)+90 && x < (WindowWidth/2)+150 && y > (WindowHeight/2)+85 && y < (WindowHeight/2)+115 && StudyOptions[0] && IdentityFlashcards[0])
          return true;
       else

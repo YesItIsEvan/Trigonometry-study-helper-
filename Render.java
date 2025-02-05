@@ -169,7 +169,7 @@ public class Render extends JPanel implements Runnable {
             SettingsMenu = true;
          else if (ClickBooleans.TriangleFlashcards(x, y))
             TriangleFlashcardsL(true);
-         else if (ClickBooleans.IdentitiyFlashcards(x, y))
+         else if (ClickBooleans.IdentityFlashcards(x, y))
             IdentityFlashcardsL(true);
       }
       ///   Settings  ///
@@ -218,44 +218,50 @@ public class Render extends JPanel implements Runnable {
       }
       ///  Identities  ///
       ///  Identities' Back  ///
-      else if(ClickBooleans.ExitIdentityFlashcards(x,y,StudyOptions,IdentityFlashcards))
-         IdentityFlashcardsL(false);
-      ///  Reciprical identities  ///
-      else if(ClickBooleans.IdentityFlashcardOption1(x,y,StudyOptions,IdentityFlashcards))
-         RecipricalIdentitiesL(true);
-      else if(ClickBooleans.IdentityFlashcardOption1Flip(x,y,StudyOptions,IdentityFlashcards))
-         FlipRecipricalIdentity();
-      else if(ClickBooleans.ExitIdentityFlashcardOption1(x,y,StudyOptions,IdentityFlashcards))
-         RecipricalIdentitiesL(false);
-      else if(ClickBooleans.IdentityFlashcardOption1Shuffle(x,y,StudyOptions,IdentityFlashcards))
-         RandomRecipricalIdentity();
-      ///  Quotient identities  ///
-      else if(ClickBooleans.IdentityFlashcardOption2(x,y,StudyOptions,IdentityFlashcards))
-         QuotientIdentitiesL(true);
-      else if(ClickBooleans.IdentityFlashcardOption2Flip(x,y,StudyOptions,IdentityFlashcards))
-         FlipQuotientIdentity();
-      else if(ClickBooleans.ExitIdentityFlashcardOption2(x,y,StudyOptions,IdentityFlashcards))
-         QuotientIdentitiesL(false);
-      else if(ClickBooleans.IdentityFlashcardOption2Shuffle(x,y,StudyOptions,IdentityFlashcards))
-         RandomQuotientIdentity();
-      ///  Pythagorean identities  ///
-      else if(ClickBooleans.IdentityFlashcardOption3(x,y,StudyOptions,IdentityFlashcards))
-         PythagoreanIdentitiesL(true);
-      else if(ClickBooleans.IdentityFlashcardOption3Flip(x,y,StudyOptions,IdentityFlashcards))
-         FlipPythagoreanIdentity();
-      else if(ClickBooleans.ExitIdentityFlashcardOption3(x,y,StudyOptions,IdentityFlashcards))
-         PythagoreanIdentitiesL(false);
-      else if(ClickBooleans.IdentityFlashcardOption3Shuffle(x,y,StudyOptions,IdentityFlashcards))
-         RandomPythagoreanIdentity();
-      ///  All identities  ///
-      else if(ClickBooleans.IdentityFlashcardOption4(x,y,StudyOptions,IdentityFlashcards))
-         AllIdentitiesL(true);
-      else if(ClickBooleans.IdentityFlashcardOption4Flip(x,y,StudyOptions,IdentityFlashcards))
-         FlipAllIdentity();
-      else if(ClickBooleans.ExitIdentityFlashcardOption4(x,y,StudyOptions,IdentityFlashcards))
-         AllIdentitiesL(false);
-      else if(ClickBooleans.IdentityFlashcardOption4Shuffle(x,y,StudyOptions,IdentityFlashcards))
-         RandomIdentity();
+      if(ClickBooleans.IdentityFlashcards(StudyOptions)) {
+         if (ClickBooleans.ExitIdentityFlashcards(x, y, IdentityFlashcards))
+            IdentityFlashcardsL(false);
+
+         ///  Reciprical identities  ///
+         else if (ClickBooleans.IdentityFlashcardOption1(x, y, IdentityFlashcards))
+            RecipricalIdentitiesL(true);
+         else if (ClickBooleans.IdentityFlashcardOption1Flip(x, y, IdentityFlashcards))
+            FlipRecipricalIdentity();
+         else if (ClickBooleans.ExitIdentityFlashcardOption1(x, y, IdentityFlashcards))
+            RecipricalIdentitiesL(false);
+         else if (ClickBooleans.IdentityFlashcardOption1Shuffle(x, y, IdentityFlashcards))
+            RandomRecipricalIdentity();
+
+         ///  Quotient identities  ///
+         else if (ClickBooleans.IdentityFlashcardOption2(x, y, IdentityFlashcards))
+            QuotientIdentitiesL(true);
+         else if (ClickBooleans.IdentityFlashcardOption2Flip(x, y, IdentityFlashcards))
+            FlipQuotientIdentity();
+         else if (ClickBooleans.ExitIdentityFlashcardOption2(x, y, IdentityFlashcards))
+            QuotientIdentitiesL(false);
+         else if (ClickBooleans.IdentityFlashcardOption2Shuffle(x, y, IdentityFlashcards))
+            RandomQuotientIdentity();
+
+         ///  Pythagorean identities  ///
+         else if (ClickBooleans.IdentityFlashcardOption3(x, y, IdentityFlashcards))
+            PythagoreanIdentitiesL(true);
+         else if (ClickBooleans.IdentityFlashcardOption3Flip(x, y, IdentityFlashcards))
+            FlipPythagoreanIdentity();
+         else if (ClickBooleans.ExitIdentityFlashcardOption3(x, y, IdentityFlashcards))
+            PythagoreanIdentitiesL(false);
+         else if (ClickBooleans.IdentityFlashcardOption3Shuffle(x, y, IdentityFlashcards))
+            RandomPythagoreanIdentity();
+
+         ///  All identities  ///
+         else if (ClickBooleans.IdentityFlashcardOption4(x, y, IdentityFlashcards))
+            AllIdentitiesL(true);
+         else if (ClickBooleans.IdentityFlashcardOption4Flip(x, y, IdentityFlashcards))
+            FlipAllIdentity();
+         else if (ClickBooleans.ExitIdentityFlashcardOption4(x, y, IdentityFlashcards))
+            AllIdentitiesL(false);
+         else if (ClickBooleans.IdentityFlashcardOption4Shuffle(x, y, IdentityFlashcards))
+            RandomIdentity();
+      }
    }
    
    ///////  Triangles  ///////
