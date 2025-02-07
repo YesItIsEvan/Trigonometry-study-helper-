@@ -183,112 +183,112 @@ public class ClickBooleans{
    }
    
    public static boolean IdentityFlashcardOption1(int x,int y,boolean[] IdentityFlashcards){
-      if(x > 15 && x < 93 && y > 100 && y < 115 && StudyOptions[0] && FalseBooleanArray(IdentityFlashcards))
+      if(x > 15 && x < 93 && y > 100 && y < 115 && FalseBooleanArray(IdentityFlashcards))
          return true;
       else 
          return false;
    }
    
    public static boolean IdentityFlashcardOption1Flip(int x,int y,boolean[] IdentityFlashcards){
-      if(x > (WindowWidth/2)+90 && x < (WindowWidth/2)+150 && y > (WindowHeight/2)+85 && y < (WindowHeight/2)+115 && StudyOptions[0] && IdentityFlashcards[0])
+      if(x > (WindowWidth/2)+90 && x < (WindowWidth/2)+150 && y > (WindowHeight/2)+85 && y < (WindowHeight/2)+115 && IdentityFlashcards[0])
          return true;
       else
          return false;
    }
 
-   public static boolean ExitIdentityFlashcardOption1(int x,int y,boolean[] StudyOptions,boolean[] IdentityFlashcards){
-      if(x > (WindowWidth/2)-252 && x < (WindowWidth/2)-180 && y > (WindowHeight/2)+68 && y < (WindowHeight/2)+92 && StudyOptions[0] && IdentityFlashcards[0])
+   public static boolean ExitIdentityFlashcardOption1(int x,int y,boolean[] IdentityFlashcards){
+      if(x > (WindowWidth/2)-252 && x < (WindowWidth/2)-180 && y > (WindowHeight/2)+68 && y < (WindowHeight/2)+92 && IdentityFlashcards[0])
          return true;
       else
          return false;
    }
    
-   public static boolean IdentityFlashcardOption1Shuffle(int x,int y,boolean[] StudyOptions,boolean[] IdentityFlashcards){
-      if(x > (WindowWidth/2)+153 && x < (WindowWidth/2)+218 && y > (WindowHeight/2)+68 && y < (WindowHeight/2)+92 && StudyOptions[0] && IdentityFlashcards[0])
+   public static boolean IdentityFlashcardOption1Shuffle(int x,int y,boolean[] IdentityFlashcards){
+      if(x > (WindowWidth/2)+153 && x < (WindowWidth/2)+218 && y > (WindowHeight/2)+68 && y < (WindowHeight/2)+92 && IdentityFlashcards[0])
          return true;
       else
          return false;
    }
    
-   public static boolean IdentityFlashcardOption2(int x,int y,boolean[] StudyOptions,boolean[] IdentityFlashcards){
-      if(x > 15 && x < 83 && y > 125 && y < 135 && StudyOptions[0] && FalseBooleanArray(IdentityFlashcards))
+   public static boolean IdentityFlashcardOption2(int x,int y,boolean[] IdentityFlashcards){
+      if(x > 15 && x < 83 && y > 125 && y < 135 && FalseBooleanArray(IdentityFlashcards))
          return true;
       else 
          return false;
    }
    
-   public static boolean IdentityFlashcardOption2Flip(int x,int y,boolean[] StudyOptions,boolean[] IdentityFlashcards){
-      if(x > (WindowWidth/2)+90 && x < (WindowWidth/2)+150 && y > (WindowHeight/2)+85 && y < (WindowHeight/2)+115 && StudyOptions[0] && IdentityFlashcards[1])
+   public static boolean IdentityFlashcardOption2Flip(int x,int y,boolean[] IdentityFlashcards){
+      if(x > (WindowWidth/2)+90 && x < (WindowWidth/2)+150 && y > (WindowHeight/2)+85 && y < (WindowHeight/2)+115 && IdentityFlashcards[1])
          return true;
       else
          return false;
    }
 
-   public static boolean ExitIdentityFlashcardOption2(int x,int y,boolean[] StudyOptions,boolean[] IdentityFlashcards){
-      if(x > (WindowWidth/2)-252 && x < (WindowWidth/2)-180 && y > (WindowHeight/2)+68 && y < (WindowHeight/2)+92 && StudyOptions[0] && IdentityFlashcards[1])
+   public static boolean ExitIdentityFlashcardOption2(int x,int y,boolean[] IdentityFlashcards){
+      if(x > (WindowWidth/2)-252 && x < (WindowWidth/2)-180 && y > (WindowHeight/2)+68 && y < (WindowHeight/2)+92 && IdentityFlashcards[1])
          return true;
       else
          return false;
    }
    
-   public static boolean IdentityFlashcardOption2Shuffle(int x,int y,boolean[] StudyOptions,boolean[] IdentityFlashcards){
-      if(x > (WindowWidth/2)+153 && x < (WindowWidth/2)+218 && y > (WindowHeight/2)+68 && y < (WindowHeight/2)+92 && StudyOptions[0] && IdentityFlashcards[1])
+   public static boolean IdentityFlashcardOption2Shuffle(int x,int y,boolean[] IdentityFlashcards){
+      if(x > (WindowWidth/2)+153 && x < (WindowWidth/2)+218 && y > (WindowHeight/2)+68 && y < (WindowHeight/2)+92 && IdentityFlashcards[1])
          return true;
       else
          return false;
    }
    
-   public static boolean IdentityFlashcardOption3(int x,int y,boolean[] StudyOptions,boolean[] IdentityFlashcards){
-      if(x > 15 && x < 112 && y > 140 && y < 155 && StudyOptions[0] && FalseBooleanArray(IdentityFlashcards))
+   public static boolean IdentityFlashcardOption3(int x,int y,boolean[] IdentityFlashcards){
+      if(x > 15 && x < 112 && y > 140 && y < 155 && FalseBooleanArray(IdentityFlashcards))
          return true;
       else 
          return false;
    }
    
-   public static boolean IdentityFlashcardOption3Flip(int x,int y,boolean[] StudyOptions,boolean[] IdentityFlashcards){
-      if(x > (WindowWidth/2)+90 && x < (WindowWidth/2)+150 && y > (WindowHeight/2)+85 && y < (WindowHeight/2)+115 && StudyOptions[0] && IdentityFlashcards[2])
+   public static boolean IdentityFlashcardOption3Flip(int x,int y,boolean[] IdentityFlashcards){
+      if(x > (WindowWidth/2)+90 && x < (WindowWidth/2)+150 && y > (WindowHeight/2)+85 && y < (WindowHeight/2)+115 && IdentityFlashcards[2])
          return true;
       else
          return false;
    }
 
-   public static boolean ExitIdentityFlashcardOption3(int x,int y,boolean[] StudyOptions,boolean[] IdentityFlashcards){
-      if(x > (WindowWidth/2)-252 && x < (WindowWidth/2)-180 && y > (WindowHeight/2)+68 && y < (WindowHeight/2)+92 && StudyOptions[0] && IdentityFlashcards[2])
+   public static boolean ExitIdentityFlashcardOption3(int x,int y,boolean[] IdentityFlashcards){
+      if(x > (WindowWidth/2)-252 && x < (WindowWidth/2)-180 && y > (WindowHeight/2)+68 && y < (WindowHeight/2)+92 && IdentityFlashcards[2])
          return true;
       else
          return false;
    }
    
-   public static boolean IdentityFlashcardOption3Shuffle(int x,int y,boolean[] StudyOptions,boolean[] IdentityFlashcards){
-      if(x > (WindowWidth/2)+153 && x < (WindowWidth/2)+218 && y > (WindowHeight/2)+68 && y < (WindowHeight/2)+92 && StudyOptions[0] && IdentityFlashcards[2])
+   public static boolean IdentityFlashcardOption3Shuffle(int x,int y,boolean[] IdentityFlashcards){
+      if(x > (WindowWidth/2)+153 && x < (WindowWidth/2)+218 && y > (WindowHeight/2)+68 && y < (WindowHeight/2)+92 && IdentityFlashcards[2])
          return true;
       else
          return false;
    }
    
-   public static boolean IdentityFlashcardOption4(int x,int y,boolean[] StudyOptions,boolean[] IdentityFlashcards){
-      if(x > 15 && x < 121 && y > 161 && y < 175 && StudyOptions[0] && (IdentityFlashcards[0] == false))
+   public static boolean IdentityFlashcardOption4(int x,int y,boolean[] IdentityFlashcards){
+      if(x > 15 && x < 121 && y > 161 && y < 175 && (IdentityFlashcards[0] == false))
          return true;
       else 
          return false;
    }
    
-   public static boolean IdentityFlashcardOption4Flip(int x,int y,boolean[] StudyOptions,boolean[] IdentityFlashcards){
-      if(x > (WindowWidth/2)+90 && x < (WindowWidth/2)+150 && y > (WindowHeight/2)+85 && y < (WindowHeight/2)+115 && StudyOptions[0] && IdentityFlashcards[3])
+   public static boolean IdentityFlashcardOption4Flip(int x,int y,boolean[] IdentityFlashcards){
+      if(x > (WindowWidth/2)+90 && x < (WindowWidth/2)+150 && y > (WindowHeight/2)+85 && y < (WindowHeight/2)+115 && IdentityFlashcards[3])
          return true;
       else
          return false;
    }
 
-   public static boolean ExitIdentityFlashcardOption4(int x,int y,boolean[] StudyOptions,boolean[] IdentityFlashcards){
-      if(x > (WindowWidth/2)-252 && x < (WindowWidth/2)-180 && y > (WindowHeight/2)+68 && y < (WindowHeight/2)+92 && StudyOptions[0] && IdentityFlashcards[3])
+   public static boolean ExitIdentityFlashcardOption4(int x,int y,boolean[] IdentityFlashcards){
+      if(x > (WindowWidth/2)-252 && x < (WindowWidth/2)-180 && y > (WindowHeight/2)+68 && y < (WindowHeight/2)+92 && IdentityFlashcards[3])
          return true;
       else
          return false;
    }
    
-   public static boolean IdentityFlashcardOption4Shuffle(int x,int y,boolean[] StudyOptions,boolean[] IdentityFlashcards){
-      if(x > (WindowWidth/2)+153 && x < (WindowWidth/2)+218 && y > (WindowHeight/2)+68 && y < (WindowHeight/2)+92 && StudyOptions[0] && IdentityFlashcards[3])
+   public static boolean IdentityFlashcardOption4Shuffle(int x,int y,boolean[] IdentityFlashcards){
+      if(x > (WindowWidth/2)+153 && x < (WindowWidth/2)+218 && y > (WindowHeight/2)+68 && y < (WindowHeight/2)+92 && IdentityFlashcards[3])
          return true;
       else
          return false;
