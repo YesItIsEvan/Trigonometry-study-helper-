@@ -39,6 +39,7 @@ public class Render extends JPanel implements Runnable {
       thread = new Thread(this);
       this.addKeyListener(keyboard);
       this.addMouseListener(mouse);
+      this.addMouseMotionListener(mouse);
       thread.start();
    }
       
@@ -116,15 +117,20 @@ public class Render extends JPanel implements Runnable {
    }
    
    public void run() {
-      long period = 1000/120;
+      long period = 1000/60;
       long beginTime = System.currentTimeMillis();
       long currentTime;
        while(true) {
       
-         Mouse_Clicked = mouse.mcd;
+         Mouse_Clicked = mouse.event[m.mouse.clicked];
          
          StudyOptions[StudyOptions.length-1] = SettingsMenu;
-         
+
+         if(mouse.event[m.mouse.entered])
+            System.out.println("("+mouse.mouse_x+","+mouse.mouse_y+")");
+         else if(mouse.event[m.mouse.exited])
+            System.out.println("mouse out of bounds");
+
          if(Mouse_Clicked){
          CheckMouse();
          }
@@ -150,12 +156,12 @@ public class Render extends JPanel implements Runnable {
    
    public void CheckMouse(){
    ////  Taking the x and y of the mouse click from the mouse listener  ////
-      Mouse_x = mouse.x;
-      Mouse_y = mouse.y;
+      Mouse_x = mouse.mouse_x;
+      Mouse_y = mouse.mouse_y;
       System.out.println(Mouse_x+","+Mouse_y);
    // Goes to another method //
       CheckBoxes(Mouse_x,Mouse_y);
-      mouse.mcd = false;
+      mouse.event[m.mouse.clicked] = false;
    }
 
    ////  Checks if the mouse click was in the range of an option  ////
@@ -451,6 +457,27 @@ public class Render extends JPanel implements Runnable {
                palette_int = paletteWheel.length-1;
            break;
       }
+   }
+   private enum m {
+      mouse(0,1,2,3,4,5,6);
+
+      private final int pressed;
+      private final int released;
+      private final int entered;
+      private final int exited;
+      private final int clicked;
+      private final int dragged;
+      private final int moved;
+
+       m(int pressed, int released, int entered, int exited, int clicked, int dragged, int moved) {
+           this.pressed = pressed;
+           this.released = released;
+           this.entered = entered;
+           this.exited = exited;
+           this.clicked = clicked;
+           this.dragged = dragged;
+           this.moved = moved;
+       }
    }
    
    public static int random(int min, int max)

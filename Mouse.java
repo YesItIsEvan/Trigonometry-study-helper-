@@ -4,35 +4,59 @@ import javax.swing.*;
 import java.util.Random;
 import javax.swing.JFrame;
 
-public class Mouse implements MouseListener{
+public class Mouse implements MouseListener, MouseMotionListener{
    
-   int x;
-   int y;
-   boolean mcd;
+   int mouse_x;
+   int mouse_y;
+   boolean[] event = new boolean[7];
    
    Mouse(){
 
    }
 
-   public void mousePressed(MouseEvent e){
-      
+   @Override
+   public void mousePressed(MouseEvent e) {
+      event[0]=true;
+
    }
-   
-   public void mouseReleased(MouseEvent e){
-      
+
+   @Override
+   public void mouseReleased(MouseEvent e) {
+      event[1]=true;
+
    }
-   
-   public void mouseEntered(MouseEvent e){
-      
+
+   @Override
+   public void mouseEntered(MouseEvent e) {
+      event[2]=true;
+      event[3]=false;
    }
-   
-   public void mouseExited(MouseEvent e){
-      
+
+   @Override
+   public void mouseExited(MouseEvent e) {
+      event[3]=true;
+      event[2]=false;
    }
-   
-   public void mouseClicked(MouseEvent e){
-      x=e.getX();
-      y=e.getY();
-      mcd = true;
+
+   @Override
+   public void mouseClicked(MouseEvent e) {
+      event[4]=true;
+
+      mouse_x=e.getX();
+      mouse_y=e.getY();
+   }
+
+   @Override
+   public void mouseDragged(MouseEvent e) {
+      event[5]=true;
+
+   }
+
+   @Override
+   public void mouseMoved(MouseEvent e) {
+      event[6]=true;
+
+      mouse_x=e.getX();
+      mouse_y=e.getY();
    }
 }
