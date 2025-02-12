@@ -902,4 +902,33 @@ public class GraphicElement{
       g.drawString("Trigonometry",(FrameWidth/2)-93,30);
       g.drawString("Study Helper",(FrameWidth/2)-90,60);
    }
+
+   public static void Waiting(Graphics g,int t,int FrameWidth,int FrameHeight){
+
+      ///////  Background  ///////
+      g.setColor(GraphicVar.backgroundColor());
+      g.fillRect(0,0,FrameWidth,FrameHeight);
+
+      ///////  Waiting ///////
+      g.setFont(new Font("Times New Roman",3,42));
+      g.setColor(GraphicVar.title());
+      g.drawString("Waiting",(FrameWidth/2)-125,(FrameHeight/2)+15);
+
+      ///////  dot dot dot  ///////
+      if(0<=t&&t<30)
+         g.drawString("0 o o",(FrameWidth/2)+25,(FrameHeight/2)+15);
+      if(30<=t&&t<60)
+         g.drawString("o 0 o",(FrameWidth/2)+25,(FrameHeight/2)+15);
+      if(60<=t&&t<90)
+         g.drawString("o o 0",(FrameWidth/2)+25,(FrameHeight/2)+15);
+
+      ///////  edges  ///////
+      g.setColor(GraphicVar.edgesColor());
+      g.fillRect(0,0,FrameWidth,71);
+      g.fillRect(0,FrameHeight-17,FrameWidth,17);
+      g.setColor(Color.black);
+      g.fillRect(0,70,FrameWidth,3);
+      g.fillRect(0,FrameHeight-17,FrameWidth,3);
+
+   }
 }

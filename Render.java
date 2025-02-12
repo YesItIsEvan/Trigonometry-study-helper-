@@ -12,6 +12,8 @@ public class Render extends JPanel implements Runnable {
    Mouse mouse = new Mouse();
 
    Thread thread;
+   int frameRate = 30;
+   int timer = 0;
    int Mouse_x;
    int Mouse_y;
    boolean Mouse_Clicked = false;   
@@ -50,74 +52,78 @@ public class Render extends JPanel implements Runnable {
       g2.setRenderingHints(new RenderingHints(RenderingHints.KEY_ANTIALIASING,RenderingHints.VALUE_ANTIALIAS_ON));
       
       GraphicVar.setPalette(palette);
-      
-      GraphicElement.NonInteractables(g,getWidth(),getHeight());
-      int j = -1;
-      int k = -1;
-      for(int i=0;i<StudyOptions.length;i++)
-         if(StudyOptions[i])
-            j = i;
-      switch(j){
-         case(0):
-            for(int i=0;i<IdentityFlashcards.length;i++)
-               if(IdentityFlashcards[i])
-                  k = i;
-            switch(k){
-               case(0):
-                  GraphicElement.RecipricalIdentitiesG(g,getWidth(),getHeight(),RecipricalIdentities);
-                 break;
-               case(1):
-                  GraphicElement.QuotientIdentitiesG(g,getWidth(),getHeight(),QuotientIdentities);
-                 break;
-               case(2):
-                  GraphicElement.PythagoreanIdentitiesG(g,getWidth(),getHeight(),PythagoreanIdentities);
-                 break;
-               case(3):
-                  GraphicElement.AllIdentitiesG(g,getWidth(),getHeight(),AllIdentities);
-                 break;
-               default:
-                  GraphicElement.IdentityFlashcardsG(g);
-             }
-           break;
-         case(1):
-            for(int i=0;i<TriangleFlashcards.length;i++)
-               if(TriangleFlashcards[i])
-                  k = i;
-            switch(k){
-               case(0):
-                  GraphicElement.FortyFiveRightTriangleG(g,getWidth(),getHeight(),fortyfiveRightTriangle);
-                 break;
-               case(1):
-                  GraphicElement.SixtyRightTriangleG(g,getWidth(),getHeight(),sixtyRightTriangle);
-                 break;
-               case(2):
-                  GraphicElement.AllRightTriangleG(g,getWidth(),getHeight(),allRightTriangle);
-                 break;
-               default:
-                  GraphicElement.TriangleFlashcardsG(g);
-             }
-           break;
-         case(2):
-            GraphicElement.SettingsMeny(g,getWidth(),getHeight());
-            switch(palette){
-               case ColorPalette.VIVIDMEMORY8:
-                  GraphicElement.PaletteChoice(g,ColorPalette.VIVIDMEMORY8);
-                 break;
-               case ColorPalette.WHITESCAPE:
-                  GraphicElement.PaletteChoice(g,ColorPalette.WHITESCAPE);
-                 break;
-               case ColorPalette.SEAFOAM8:
-                  GraphicElement.PaletteChoice(g,ColorPalette.SEAFOAM8);
-                 break;
-             }
-           break;
-         default:
-            GraphicElement.StudyOptionsPrompt(g,getHeight());
+      if(mouse.event[m.mouse.exited])
+         GraphicElement.Waiting(g, timer, getWidth(), getHeight());
+      else {
+         timer = 0;
+         GraphicElement.NonInteractables(g,getWidth(),getHeight());
+         int j = -1;
+         int k = -1;
+         for(int i=0;i<StudyOptions.length;i++)
+            if(StudyOptions[i])
+               j = i;
+         switch(j) {
+            case (0):
+               for (int i = 0; i < IdentityFlashcards.length; i++)
+                  if (IdentityFlashcards[i])
+                     k = i;
+               switch (k) {
+                  case (0):
+                     GraphicElement.RecipricalIdentitiesG(g, getWidth(), getHeight(), RecipricalIdentities);
+                     break;
+                  case (1):
+                     GraphicElement.QuotientIdentitiesG(g, getWidth(), getHeight(), QuotientIdentities);
+                     break;
+                  case (2):
+                     GraphicElement.PythagoreanIdentitiesG(g, getWidth(), getHeight(), PythagoreanIdentities);
+                     break;
+                  case (3):
+                     GraphicElement.AllIdentitiesG(g, getWidth(), getHeight(), AllIdentities);
+                     break;
+                  default:
+                     GraphicElement.IdentityFlashcardsG(g);
+               }
+               break;
+            case (1):
+               for (int i = 0; i < TriangleFlashcards.length; i++)
+                  if (TriangleFlashcards[i])
+                     k = i;
+               switch (k) {
+                  case (0):
+                     GraphicElement.FortyFiveRightTriangleG(g, getWidth(), getHeight(), fortyfiveRightTriangle);
+                     break;
+                  case (1):
+                     GraphicElement.SixtyRightTriangleG(g, getWidth(), getHeight(), sixtyRightTriangle);
+                     break;
+                  case (2):
+                     GraphicElement.AllRightTriangleG(g, getWidth(), getHeight(), allRightTriangle);
+                     break;
+                  default:
+                     GraphicElement.TriangleFlashcardsG(g);
+               }
+               break;
+            case (2):
+               GraphicElement.SettingsMeny(g, getWidth(), getHeight());
+               switch (palette) {
+                  case ColorPalette.VIVIDMEMORY8:
+                     GraphicElement.PaletteChoice(g, ColorPalette.VIVIDMEMORY8);
+                     break;
+                  case ColorPalette.WHITESCAPE:
+                     GraphicElement.PaletteChoice(g, ColorPalette.WHITESCAPE);
+                     break;
+                  case ColorPalette.SEAFOAM8:
+                     GraphicElement.PaletteChoice(g, ColorPalette.SEAFOAM8);
+                     break;
+               }
+               break;
+            default:
+               GraphicElement.StudyOptionsPrompt(g, getHeight());
+         }
       }
    }
    
    public void run() {
-      long period = 1000/60;
+      long period = 1000/frameRate;
       long beginTime = System.currentTimeMillis();
       long currentTime;
        while(true) {
@@ -126,10 +132,13 @@ public class Render extends JPanel implements Runnable {
          
          StudyOptions[StudyOptions.length-1] = SettingsMenu;
 
-         if(mouse.event[m.mouse.entered])
+         /*if(mouse.event[m.mouse.entered])
             System.out.println("("+mouse.mouse_x+","+mouse.mouse_y+")");
          else if(mouse.event[m.mouse.exited])
-            System.out.println("mouse out of bounds");
+            System.out.println("mouse out of bounds");*/
+
+         timer++;
+         if(timer==90)timer = 0;
 
          if(Mouse_Clicked){
          CheckMouse();
