@@ -176,7 +176,14 @@ public class ClickBooleans{
    }
 
    public static boolean ExitIdentityFlashcards(int x,int y,boolean[] IdentityFlashcards){
-      if(x > 15 && x < 55 && y > 180 && y < 195 && FalseBooleanArray(IdentityFlashcards))
+      if(x > 10 && x < 55 && y > 190 && y < 215 && FalseBooleanArray(IdentityFlashcards))
+         return true;
+      else
+         return false;
+   }
+
+   public static boolean PlayIdentityMatching(int x, int y,boolean[] IdentityFlashcards){
+      if(x > 15 && x < 121 && y > 171 && y < 195 && FalseBooleanArray(IdentityFlashcards))
          return true;
       else
          return false;
@@ -293,7 +300,8 @@ public class ClickBooleans{
       else
          return false;
    }
-   
+
+
    private static boolean FalseBooleanArray(boolean[] Array){
       for(int i=0;i<Array.length;i++)
          if(Array[i])

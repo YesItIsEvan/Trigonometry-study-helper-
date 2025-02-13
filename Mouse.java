@@ -1,13 +1,11 @@
-import java.awt.*;
 import java.awt.event.*;
-import javax.swing.*;
-import java.util.Random;
-import javax.swing.JFrame;
+import java.awt.Point;
 
 public class Mouse implements MouseListener, MouseMotionListener{
    
-   int mouse_x;
-   int mouse_y;
+   int x;
+   int y;
+   Point position;
    boolean[] event = new boolean[7];
    
    Mouse(){
@@ -17,12 +15,14 @@ public class Mouse implements MouseListener, MouseMotionListener{
    @Override
    public void mousePressed(MouseEvent e) {
       event[0]=true;
+      event[1]=false;
 
    }
 
    @Override
    public void mouseReleased(MouseEvent e) {
       event[1]=true;
+      event[0]=false;
 
    }
 
@@ -42,23 +42,25 @@ public class Mouse implements MouseListener, MouseMotionListener{
    public void mouseClicked(MouseEvent e) {
       event[4]=true;
 
-      mouse_x=e.getX();
-      mouse_y=e.getY();
+      x=e.getX();
+      y =e.getY();
    }
 
    @Override
    public void mouseDragged(MouseEvent e) {
       event[5]=true;
 
-      mouse_x=e.getX();
-      mouse_y=e.getY();
+      position = e.getPoint();
+      x=e.getX();
+      y =e.getY();
    }
 
    @Override
    public void mouseMoved(MouseEvent e) {
       event[6]=true;
 
-      mouse_x=e.getX();
-      mouse_y=e.getY();
+      position = e.getPoint();
+      x=e.getX();
+      y =e.getY();
    }
 }

@@ -740,20 +740,40 @@ public class GraphicElement{
             }
       }
    }
-   
+
+   public static void IdentitiesMatching(Graphics g, int FrameWidth,int FrameHeight,Rectangle[] draggable,Rectangle[] targets,boolean[] show){
+      for(int i=0;i<targets.length;i++)
+         if(show[i]){
+            g.setColor(GraphicVar.flashcardColor());
+            g.fillRoundRect(targets[i].x, targets[i].y, targets[i].width, targets[i].height,10,10);  // Draw drop target
+            g.setColor(Color.black);
+            g.drawRoundRect(targets[i].x + 5, targets[i].y + 5, targets[i].width - 10, targets[i].height - 10, 10, 10);  // Draw drop target
+            g.drawRoundRect(targets[i].x, targets[i].y, targets[i].width, targets[i].height,10,10);  // Draw drop target
+         }
+      for(int i=0;i<draggable.length;i++)
+         if(show[i]){
+            g.setColor(GraphicVar.flashcardColor());
+            g.fillRoundRect(draggable[i].x, draggable[i].y, draggable[i].width, draggable[i].height, 10, 10);  // Draw draggable item
+            g.setColor(Color.black);
+            g.drawRoundRect(draggable[i].x + 5, draggable[i].y + 5, draggable[i].width - 10, draggable[i].height - 10, 10, 10);  // Draw draggable item
+            g.drawRoundRect(draggable[i].x, draggable[i].y, draggable[i].width, draggable[i].height, 10, 10);  // Draw draggable item
+         }
+   }
+
    public static void IdentityFlashcardsG(Graphics g){
       
    ///////  Flashcard Options  ///////
       g.setFont(GraphicVar.promptTitleFont);
       g.drawString("Identity Flashcards",10,95);
       g.setColor(GraphicVar.flashcardBackColor());
-      g.drawString("Back",10,195);
+      g.drawString("Back",10,215);
       g.setFont(GraphicVar.promptFont);
       g.setColor(GraphicVar.title());
-      g.drawString("Reciprical",15,115);
+      g.drawString("Reciprocal",15,115);
       g.drawString("Quotient",15,135);
       g.drawString("Pythagorean",15,155);
       g.drawString("Shotgun/ALL",15,175);
+      g.drawString("Matching",15,195);
    }
 
    public static void TriangleFlashcardsG(Graphics g){
@@ -762,12 +782,13 @@ public class GraphicElement{
       g.setFont(GraphicVar.promptTitleFont);
       g.drawString("Triangle Flashcards",10,95);
       g.setColor(GraphicVar.flashcardBackColor());
-      g.drawString("Back",10,175);
+      g.drawString("Back",10,195);
       g.setFont(GraphicVar.promptFont);
       g.setColor(GraphicVar.title());
       g.drawString("90,45,45",15,115);
       g.drawString("90,60,30",15,135);
       g.drawString("Shotgun/ALL",15,155);
+      g.drawString("Matching",15,175);
    }
    
    public static void StudyOptionsPrompt(Graphics g,int FrameHeight){
@@ -915,11 +936,11 @@ public class GraphicElement{
       g.drawString("Waiting",(FrameWidth/2)-125,(FrameHeight/2)+15);
 
       ///////  dot dot dot  ///////
-      if(0<=t&&t<30)
+      if(0<=t&&t<60)
          g.drawString("0 o o",(FrameWidth/2)+25,(FrameHeight/2)+15);
-      if(30<=t&&t<60)
+      if(60<=t&&t<120)
          g.drawString("o 0 o",(FrameWidth/2)+25,(FrameHeight/2)+15);
-      if(60<=t&&t<90)
+      if(120<=t&&t<180)
          g.drawString("o o 0",(FrameWidth/2)+25,(FrameHeight/2)+15);
 
       ///////  edges  ///////

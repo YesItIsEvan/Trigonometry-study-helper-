@@ -12,15 +12,16 @@ public class Render extends JPanel implements Runnable {
    Mouse mouse = new Mouse();
 
    Thread thread;
-   int frameRate = 30;
+   int frameRate = 60;
    int timer = 0;
    int Mouse_x;
    int Mouse_y;
-   boolean Mouse_Clicked = false;   
-   boolean SettingsMenu = false;   
+   boolean Mouse_Clicked = false;
+
+   boolean SettingsMenu = false;
    boolean[] StudyOptions = new boolean[3];
-   boolean[] IdentityFlashcards = new boolean[4];
-   boolean[] TriangleFlashcards = new boolean[3];
+   boolean[] IdentityFlashcards = new boolean[5];
+   boolean[] TriangleFlashcards = new boolean[4];
    int[] fortyfiveRightTriangle = new int[2];
    int[] sixtyRightTriangle = new int[2];
    int[] allRightTriangle = new int[2];
@@ -28,6 +29,15 @@ public class Render extends JPanel implements Runnable {
    int[] QuotientIdentities = new int[2];
    int[] PythagoreanIdentities = new int[2];
    int[] AllIdentities = new int[2];
+   Rectangle[] item = new Rectangle[4];
+   Rectangle[] target = new Rectangle[item.length];
+   boolean[] showItemSet = new boolean[item.length];
+   int[] Seed = randomOrderSeed(item.length);
+   int draggingItem;
+   boolean dragging = false;
+   int offsetX, offsetY;
+
+
    ColorPalette[] paletteWheel = {ColorPalette.VIVIDMEMORY8,ColorPalette.WHITESCAPE,ColorPalette.SEAFOAM8};
    ///////  SEAFOAM8,WHITESCAPE,EXOPHOBIA,VIVIDMEMORY8  ///////
    ColorPalette palette = ColorPalette.VIVIDMEMORY8;
@@ -42,6 +52,11 @@ public class Render extends JPanel implements Runnable {
       this.addKeyListener(keyboard);
       this.addMouseListener(mouse);
       this.addMouseMotionListener(mouse);
+      for(int i=0;i<item.length;i++) {
+         item[i] = new Rectangle(50, 100+(Seed[i]*90), 75, 50);  // Draggable item
+         target[i] = new Rectangle(400, 100+(i*90), 75, 50);  // Drop target
+         showItemSet[i] = true;
+      }
       thread.start();
    }
       
@@ -79,6 +94,9 @@ public class Render extends JPanel implements Runnable {
                      break;
                   case (3):
                      GraphicElement.AllIdentitiesG(g, getWidth(), getHeight(), AllIdentities);
+                     break;
+                  case (4):
+                     GraphicElement.IdentitiesMatching(g, getWidth(), getHeight(), item, target, showItemSet);
                      break;
                   default:
                      GraphicElement.IdentityFlashcardsG(g);
@@ -138,11 +156,14 @@ public class Render extends JPanel implements Runnable {
             System.out.println("mouse out of bounds");*/
 
          timer++;
-         if(timer==90)timer = 0;
+         if(timer==frameRate*3)timer = 0;
 
          if(Mouse_Clicked){
          CheckMouse();
          }
+
+         if(IdentityFlashcards[4])
+            MatchingGame();
 
          palette = paletteWheel[palette_int];
                            
@@ -162,11 +183,39 @@ public class Render extends JPanel implements Runnable {
            beginTime = currentTime;
       }
    }
+
+   public void MatchingGame() {
+      if (mouse.event[m.mouse.released]) {
+         dragging = false;
+         if (target[draggingItem].intersects(item[draggingItem])) {
+            showItemSet[draggingItem]=false;
+         } else {
+            item[draggingItem].setLocation(50 - ((int) Math.round(0.9 * (50 - item[draggingItem].x))), (100+(90*Seed[draggingItem])) - ((int) Math.round(0.9 * ((100+(90*Seed[draggingItem])) - item[draggingItem].y))));
+         }
+      }
+
+      if (mouse.event[m.mouse.dragged]) {
+         if (dragging) {
+            item[draggingItem].setLocation(mouse.x - offsetX, mouse.y - offsetY);
+         }
+      }
+
+      if (mouse.event[m.mouse.pressed]) {
+         for (int i = 0; i < item.length; i++)
+            if (item[i].contains(mouse.position)&&showItemSet[i]) {
+               draggingItem = i;
+               dragging = true;
+               offsetX = mouse.x - item[i].x;
+               offsetY = mouse.y - item[i].y;
+            }
+      }
+
+   }
    
    public void CheckMouse(){
    ////  Taking the x and y of the mouse click from the mouse listener  ////
-      Mouse_x = mouse.mouse_x;
-      Mouse_y = mouse.mouse_y;
+      Mouse_x = mouse.x;
+      Mouse_y = mouse.y;
       System.out.println(Mouse_x+","+Mouse_y);
    // Goes to another method //
       CheckBoxes(Mouse_x,Mouse_y);
@@ -276,9 +325,14 @@ public class Render extends JPanel implements Runnable {
             AllIdentitiesL(false);
          else if (ClickBooleans.NextAllIdentityCard(x, y, IdentityFlashcards))
             RandomIdentity();
+
+         /// Matching ///
+         else if(ClickBooleans.PlayIdentityMatching(x, y, IdentityFlashcards))
+            IdentityMatchingL(true);
+
       }
    }
-   
+
    ///////  Triangles  ///////
    // Triangle switch display //
    public void TriangleFlashcardsL(boolean show){
@@ -358,7 +412,7 @@ public class Render extends JPanel implements Runnable {
    public void IdentityFlashcardsL(boolean show){
       StudyOptions[0] = show;
    }
-   
+
    public void RecipricalIdentitiesL(boolean show){
       IdentityFlashcards[0] = show;
       RandomRecipricalIdentity(); // chooses random reciprocal identity :)
@@ -378,7 +432,11 @@ public class Render extends JPanel implements Runnable {
       IdentityFlashcards[3] = show;
       RandomIdentity(); // chooses random identity :)
    }
-   
+
+   public void IdentityMatchingL(boolean show){
+      IdentityFlashcards[4] = show;
+   }
+
    // Identities select random card //
    public void RandomRecipricalIdentity(){
       int i = random(1,6);
@@ -487,6 +545,27 @@ public class Render extends JPanel implements Runnable {
            this.dragged = dragged;
            this.moved = moved;
        }
+   }
+
+   public static int[] randomOrderSeed(int length){
+      int[] seed = new int[length];
+         for(int i=0;i<length;i++) {
+            seed[i] = random(0, length - 1);
+            while (numberRepeats(i, seed))
+               seed[i] = random(0, length - 1);
+         }
+      return seed;
+   }
+
+   public static boolean numberRepeats(int initial,int[] array){
+      int a = 0;
+      for(int i=0;i<array.length;i++)
+         if(array[initial]==array[i])
+            a++;
+      if(a>=2)
+         return true;
+      else
+         return false;
    }
    
    public static int random(int min, int max)
