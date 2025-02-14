@@ -29,7 +29,7 @@ public class Render extends JPanel implements Runnable {
    int[] QuotientIdentities = new int[2];
    int[] PythagoreanIdentities = new int[2];
    int[] AllIdentities = new int[2];
-   Rectangle[] item = new Rectangle[4];
+   Rectangle[] item = new Rectangle[5];
    Rectangle[] target = new Rectangle[item.length];
    boolean[] showItemSet = new boolean[item.length];
    int[] Seed = randomOrderSeed(item.length);
@@ -53,8 +53,8 @@ public class Render extends JPanel implements Runnable {
       this.addMouseListener(mouse);
       this.addMouseMotionListener(mouse);
       for(int i=0;i<item.length;i++) {
-         item[i] = new Rectangle(50, 100+(Seed[i]*90), 75, 50);  // Draggable item
-         target[i] = new Rectangle(400, 100+(i*90), 75, 50);  // Drop target
+         item[i] = new Rectangle(50, 100+(Seed[i]*60), 60, 40);  // Draggable item
+         target[i] = new Rectangle(400, 100+(i*60), 60, 40);  // Drop target
          showItemSet[i] = true;
       }
       thread.start();
@@ -190,7 +190,14 @@ public class Render extends JPanel implements Runnable {
          if (target[draggingItem].intersects(item[draggingItem])) {
             showItemSet[draggingItem]=false;
          } else {
-            item[draggingItem].setLocation(50 - ((int) Math.round(0.9 * (50 - item[draggingItem].x))), (100+(90*Seed[draggingItem])) - ((int) Math.round(0.9 * ((100+(90*Seed[draggingItem])) - item[draggingItem].y))));
+            if(item[draggingItem].x<=50&&item[draggingItem].y<=(100+(60*Seed[draggingItem])))
+               item[draggingItem].setLocation(50 - ((int) Math.floor(0.97 * (50.0 - item[draggingItem].x))), (100+(60*Seed[draggingItem])) - ((int) Math.floor(0.97 * ((100+(60.0*Seed[draggingItem])) - item[draggingItem].y))));
+            else if(item[draggingItem].x>=50&&item[draggingItem].y>=(100+(60*Seed[draggingItem])))
+               item[draggingItem].setLocation(50 - ((int) Math.ceil(0.97 * (50.0 - item[draggingItem].x))), (100+(60*Seed[draggingItem])) - ((int) Math.ceil(0.97 * ((100+(60.0*Seed[draggingItem])) - item[draggingItem].y))));
+            else if(item[draggingItem].x<=50&&item[draggingItem].y>=(100+(60*Seed[draggingItem])))
+               item[draggingItem].setLocation(50 - ((int) Math.floor(0.97 * (50.0 - item[draggingItem].x))), (100+(60*Seed[draggingItem])) - ((int) Math.ceil(0.97 * ((100+(60.0*Seed[draggingItem])) - item[draggingItem].y))));
+            else if(item[draggingItem].x>=50&&item[draggingItem].y<=(100+(60*Seed[draggingItem])))
+               item[draggingItem].setLocation(50 - ((int) Math.ceil(0.97 * (50.0 - item[draggingItem].x))), (100+(60*Seed[draggingItem])) - ((int) Math.floor(0.97 * ((100+(60.0*Seed[draggingItem])) - item[draggingItem].y))));
          }
       }
 

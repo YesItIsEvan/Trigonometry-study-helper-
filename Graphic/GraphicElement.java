@@ -747,7 +747,7 @@ public class GraphicElement{
             g.setColor(GraphicVar.flashcardColor());
             g.fillRoundRect(targets[i].x, targets[i].y, targets[i].width, targets[i].height,10,10);  // Draw drop target
             g.setColor(Color.black);
-            g.drawRoundRect(targets[i].x + 5, targets[i].y + 5, targets[i].width - 10, targets[i].height - 10, 10, 10);  // Draw drop target
+            g.drawRoundRect(targets[i].x + 3, targets[i].y + 3, targets[i].width - 6, targets[i].height - 6, 10, 10);  // Draw drop target
             g.drawRoundRect(targets[i].x, targets[i].y, targets[i].width, targets[i].height,10,10);  // Draw drop target
          }
       for(int i=0;i<draggable.length;i++)
@@ -755,7 +755,7 @@ public class GraphicElement{
             g.setColor(GraphicVar.flashcardColor());
             g.fillRoundRect(draggable[i].x, draggable[i].y, draggable[i].width, draggable[i].height, 10, 10);  // Draw draggable item
             g.setColor(Color.black);
-            g.drawRoundRect(draggable[i].x + 5, draggable[i].y + 5, draggable[i].width - 10, draggable[i].height - 10, 10, 10);  // Draw draggable item
+            g.drawRoundRect(draggable[i].x + 3, draggable[i].y + 3, draggable[i].width - 6, draggable[i].height - 6, 10, 10);  // Draw draggable item
             g.drawRoundRect(draggable[i].x, draggable[i].y, draggable[i].width, draggable[i].height, 10, 10);  // Draw draggable item
          }
    }
