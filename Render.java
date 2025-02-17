@@ -13,6 +13,7 @@ public class Render extends JPanel implements Runnable {
 
    Thread thread;
    int frameRate = 60;
+   Dimension windowSize = new Dimension(700,500);
    int timer = 0;
    int Mouse_x;
    int Mouse_y;
@@ -29,7 +30,7 @@ public class Render extends JPanel implements Runnable {
    int[] QuotientIdentities = new int[2];
    int[] PythagoreanIdentities = new int[2];
    int[] AllIdentities = new int[2];
-   Rectangle[] item = new Rectangle[5];
+   Rectangle[] item = new Rectangle[13];
    Rectangle[] target = new Rectangle[item.length];
    boolean[] showItemSet = new boolean[item.length];
    int[] Seed = randomOrderSeed(item.length);
@@ -52,11 +53,6 @@ public class Render extends JPanel implements Runnable {
       this.addKeyListener(keyboard);
       this.addMouseListener(mouse);
       this.addMouseMotionListener(mouse);
-      for(int i=0;i<item.length;i++) {
-         item[i] = new Rectangle(50, 100+(Seed[i]*60), 60, 40);  // Draggable item
-         target[i] = new Rectangle(400, 100+(i*60), 60, 40);  // Drop target
-         showItemSet[i] = true;
-      }
       thread.start();
    }
       
@@ -162,8 +158,15 @@ public class Render extends JPanel implements Runnable {
          CheckMouse();
          }
 
-         if(IdentityFlashcards[4])
+         if(IdentityFlashcards[4]) {
             MatchingGame();
+            for (int i = 0; i < target.length; i++) {
+               if (i <= 6)
+                  target[i] = new Rectangle(getWidth() - 110, 100 + (i * 60), 60, 40);  // Drop target
+               if (i > 6)
+                  target[i] = new Rectangle(getWidth() - 190, 100 + ((i-7) * 60), 60, 40);  // Drop target
+            }
+         }
 
          palette = paletteWheel[palette_int];
                            
@@ -184,20 +187,36 @@ public class Render extends JPanel implements Runnable {
       }
    }
 
+   public void resetMatching(boolean HardReset){
+      if(HardReset)
+         Seed = randomOrderSeed(item.length);
+      for(int i=0;i<item.length;i++) {
+         if(Seed[i]<=6)
+            item[i] = new Rectangle(50, 100+(Seed[i]*60), 60, 40);  // Draggable item
+         if(Seed[i]>6)
+            item[i] = new Rectangle(130, 100+((Seed[i]-7)*60), 60, 40);  // Draggable item
+         if(i<=6)
+            target[i] = new Rectangle(getWidth()-110, 100+(i*60), 60, 40);  // Drop target
+         if(i>6)
+            target[i] = new Rectangle(getWidth()-190, 100+((i-7)*60), 60, 40);  // Drop target
+         showItemSet[i] = true;
+      }
+   }
+
    public void MatchingGame() {
       if (mouse.event[m.mouse.released]) {
          dragging = false;
          if (target[draggingItem].intersects(item[draggingItem])) {
             showItemSet[draggingItem]=false;
          } else {
-            if(item[draggingItem].x<=50&&item[draggingItem].y<=(100+(60*Seed[draggingItem])))
-               item[draggingItem].setLocation(50 - ((int) Math.floor(0.97 * (50.0 - item[draggingItem].x))), (100+(60*Seed[draggingItem])) - ((int) Math.floor(0.97 * ((100+(60.0*Seed[draggingItem])) - item[draggingItem].y))));
-            else if(item[draggingItem].x>=50&&item[draggingItem].y>=(100+(60*Seed[draggingItem])))
-               item[draggingItem].setLocation(50 - ((int) Math.ceil(0.97 * (50.0 - item[draggingItem].x))), (100+(60*Seed[draggingItem])) - ((int) Math.ceil(0.97 * ((100+(60.0*Seed[draggingItem])) - item[draggingItem].y))));
-            else if(item[draggingItem].x<=50&&item[draggingItem].y>=(100+(60*Seed[draggingItem])))
-               item[draggingItem].setLocation(50 - ((int) Math.floor(0.97 * (50.0 - item[draggingItem].x))), (100+(60*Seed[draggingItem])) - ((int) Math.ceil(0.97 * ((100+(60.0*Seed[draggingItem])) - item[draggingItem].y))));
-            else if(item[draggingItem].x>=50&&item[draggingItem].y<=(100+(60*Seed[draggingItem])))
-               item[draggingItem].setLocation(50 - ((int) Math.ceil(0.97 * (50.0 - item[draggingItem].x))), (100+(60*Seed[draggingItem])) - ((int) Math.floor(0.97 * ((100+(60.0*Seed[draggingItem])) - item[draggingItem].y))));
+            if(item[draggingItem].x<=(50+(80*(Seed[draggingItem]/8)))&&item[draggingItem].y<=(100+(60*(Seed[draggingItem]-(7*(Seed[draggingItem]/7))))))
+               item[draggingItem].setLocation((50+(80*(Seed[draggingItem]/7))) - ((int) Math.floor(0.97 * ((50.0+(80*(Seed[draggingItem]/7))) - item[draggingItem].x))), (100+(60*(Seed[draggingItem]-(7*(Seed[draggingItem]/7))))) - ((int) Math.floor(0.97 * ((100+(60.0*(Seed[draggingItem]-(7*(Seed[draggingItem]/7))))) - item[draggingItem].y))));
+            else if(item[draggingItem].x>=(50+(80*(Seed[draggingItem]/7)))&&item[draggingItem].y>=(100+(60*(Seed[draggingItem]-(7*(Seed[draggingItem]/7))))))
+               item[draggingItem].setLocation((50+(80*(Seed[draggingItem]/7))) - ((int) Math.ceil(0.97 * ((50.0+(80*(Seed[draggingItem]/7))) - item[draggingItem].x))), (100+(60*(Seed[draggingItem]-(7*(Seed[draggingItem]/7))))) - ((int) Math.ceil(0.97 * ((100+(60.0*(Seed[draggingItem]-(7*(Seed[draggingItem]/7))))) - item[draggingItem].y))));
+            else if(item[draggingItem].x<=(50+(80*(Seed[draggingItem]/7)))&&item[draggingItem].y>=(100+(60*(Seed[draggingItem]-(7*(Seed[draggingItem]/7))))))
+               item[draggingItem].setLocation((50+(80*(Seed[draggingItem]/7))) - ((int) Math.floor(0.97 * ((50.0+(80*(Seed[draggingItem]/7))) - item[draggingItem].x))), (100+(60*(Seed[draggingItem]-(7*(Seed[draggingItem]/7))))) - ((int) Math.ceil(0.97 * ((100+(60.0*(Seed[draggingItem]-(7*(Seed[draggingItem]/7))))) - item[draggingItem].y))));
+            else if(item[draggingItem].x>=(50+(80*(Seed[draggingItem]/7)))&&item[draggingItem].y<=(100+(60*(Seed[draggingItem]-(7*(Seed[draggingItem]/7))))))
+               item[draggingItem].setLocation((50+(80*(Seed[draggingItem]/7))) - ((int) Math.ceil(0.97 * ((50.0+(80*(Seed[draggingItem]/7))) - item[draggingItem].x))), (100+(60*(Seed[draggingItem]-(7*(Seed[draggingItem]/7))))) - ((int) Math.floor(0.97 * ((100+(60.0*(Seed[draggingItem]-(7*(Seed[draggingItem]/7))))) - item[draggingItem].y))));
          }
       }
 
@@ -208,15 +227,15 @@ public class Render extends JPanel implements Runnable {
       }
 
       if (mouse.event[m.mouse.pressed]) {
-         for (int i = 0; i < item.length; i++)
-            if (item[i].contains(mouse.position)&&showItemSet[i]) {
-               draggingItem = i;
-               dragging = true;
-               offsetX = mouse.x - item[i].x;
-               offsetY = mouse.y - item[i].y;
-            }
+         if(!dragging)
+            for (int i = 0; i < item.length; i++)
+               if (item[i].contains(mouse.position)&&showItemSet[i]) {
+                  draggingItem = i;
+                  dragging = true;
+                  offsetX = mouse.x - item[i].x;
+                  offsetY = mouse.y - item[i].y;
+               }
       }
-
    }
    
    public void CheckMouse(){
@@ -442,6 +461,8 @@ public class Render extends JPanel implements Runnable {
 
    public void IdentityMatchingL(boolean show){
       IdentityFlashcards[4] = show;
+      resetMatching(true);
+      SetRenderSize(600,600);
    }
 
    // Identities select random card //
@@ -532,16 +553,16 @@ public class Render extends JPanel implements Runnable {
            break;
       }
    }
-   private enum m {
+   public enum m {
       mouse(0,1,2,3,4,5,6);
 
-      private final int pressed;
-      private final int released;
-      private final int entered;
-      private final int exited;
-      private final int clicked;
-      private final int dragged;
-      private final int moved;
+      public final int pressed;
+      public final int released;
+      public final int entered;
+      public final int exited;
+      public final int clicked;
+      public final int dragged;
+      public final int moved;
 
        m(int pressed, int released, int entered, int exited, int clicked, int dragged, int moved) {
            this.pressed = pressed;
@@ -555,9 +576,11 @@ public class Render extends JPanel implements Runnable {
    }
 
    public static int[] randomOrderSeed(int length){
-      int[] seed = new int[length];
-         for(int i=0;i<length;i++) {
-            seed[i] = random(0, length - 1);
+      int[] seed = new int[length] ;
+      for(int i=0;i<length;i++)
+         seed[i] = length;
+      for(int i=0;i<length;i++) {
+         seed[i] = random(0, length - 1);
             while (numberRepeats(i, seed))
                seed[i] = random(0, length - 1);
          }
@@ -573,6 +596,11 @@ public class Render extends JPanel implements Runnable {
          return true;
       else
          return false;
+   }
+
+   public void SetRenderSize(int width, int height){
+      setSize(new Dimension(width,height));
+      windowSize = new Dimension(width,height);
    }
    
    public static int random(int min, int max)
