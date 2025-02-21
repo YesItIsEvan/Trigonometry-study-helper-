@@ -67,7 +67,7 @@ public class Render extends JPanel implements Runnable {
          GraphicElement.Waiting(g, timer, getWidth(), getHeight());
       else {
          timer = 0;
-         GraphicElement.NonInteractables(g,getWidth(),getHeight());
+         GraphicElement.Background(g,getWidth(),getHeight());
          int j = -1;
          int k = -1;
          for(int i=0;i<StudyOptions.length;i++)
@@ -133,6 +133,7 @@ public class Render extends JPanel implements Runnable {
             default:
                GraphicElement.StudyOptionsPrompt(g, getHeight());
          }
+         GraphicElement.NonInteractables(g,getWidth(),getHeight());
       }
    }
    
@@ -161,10 +162,10 @@ public class Render extends JPanel implements Runnable {
          if(IdentityFlashcards[4]) {
             MatchingGame();
             for (int i = 0; i < target.length; i++) {
-               if (i <= 6)
-                  target[i] = new Rectangle(getWidth() - 110, 100 + (i * 60), 60, 40);  // Drop target
-               if (i > 6)
-                  target[i] = new Rectangle(getWidth() - 190, 100 + ((i-7) * 60), 60, 40);  // Drop target
+               if(i<=6)
+                  target[i] = new Rectangle(getWidth()-150, 100+(i*80), 100, 60);  // Drop target
+               if(i>6)
+                  target[i] = new Rectangle(getWidth()-270, 100+((i-7)*80), 100, 60);  // Drop target
             }
          }
 
@@ -192,13 +193,13 @@ public class Render extends JPanel implements Runnable {
          Seed = randomOrderSeed(item.length);
       for(int i=0;i<item.length;i++) {
          if(Seed[i]<=6)
-            item[i] = new Rectangle(50, 100+(Seed[i]*60), 60, 40);  // Draggable item
+            item[i] = new Rectangle(50, 100+(Seed[i]*80), 100, 60);  // Draggable item
          if(Seed[i]>6)
-            item[i] = new Rectangle(130, 100+((Seed[i]-7)*60), 60, 40);  // Draggable item
+            item[i] = new Rectangle(170, 100+((Seed[i]-7)*80), 100, 60);  // Draggable item
          if(i<=6)
-            target[i] = new Rectangle(getWidth()-110, 100+(i*60), 60, 40);  // Drop target
+            target[i] = new Rectangle(getWidth()-150, 100+(i*80), 100, 60);  // Drop target
          if(i>6)
-            target[i] = new Rectangle(getWidth()-190, 100+((i-7)*60), 60, 40);  // Drop target
+            target[i] = new Rectangle(getWidth()-270, 100+((i-7)*80), 100, 60);  // Drop target
          showItemSet[i] = true;
       }
    }
@@ -209,14 +210,14 @@ public class Render extends JPanel implements Runnable {
          if (target[draggingItem].intersects(item[draggingItem])) {
             showItemSet[draggingItem]=false;
          } else {
-            if(item[draggingItem].x<=(50+(80*(Seed[draggingItem]/8)))&&item[draggingItem].y<=(100+(60*(Seed[draggingItem]-(7*(Seed[draggingItem]/7))))))
-               item[draggingItem].setLocation((50+(80*(Seed[draggingItem]/7))) - ((int) Math.floor(0.97 * ((50.0+(80*(Seed[draggingItem]/7))) - item[draggingItem].x))), (100+(60*(Seed[draggingItem]-(7*(Seed[draggingItem]/7))))) - ((int) Math.floor(0.97 * ((100+(60.0*(Seed[draggingItem]-(7*(Seed[draggingItem]/7))))) - item[draggingItem].y))));
-            else if(item[draggingItem].x>=(50+(80*(Seed[draggingItem]/7)))&&item[draggingItem].y>=(100+(60*(Seed[draggingItem]-(7*(Seed[draggingItem]/7))))))
-               item[draggingItem].setLocation((50+(80*(Seed[draggingItem]/7))) - ((int) Math.ceil(0.97 * ((50.0+(80*(Seed[draggingItem]/7))) - item[draggingItem].x))), (100+(60*(Seed[draggingItem]-(7*(Seed[draggingItem]/7))))) - ((int) Math.ceil(0.97 * ((100+(60.0*(Seed[draggingItem]-(7*(Seed[draggingItem]/7))))) - item[draggingItem].y))));
-            else if(item[draggingItem].x<=(50+(80*(Seed[draggingItem]/7)))&&item[draggingItem].y>=(100+(60*(Seed[draggingItem]-(7*(Seed[draggingItem]/7))))))
-               item[draggingItem].setLocation((50+(80*(Seed[draggingItem]/7))) - ((int) Math.floor(0.97 * ((50.0+(80*(Seed[draggingItem]/7))) - item[draggingItem].x))), (100+(60*(Seed[draggingItem]-(7*(Seed[draggingItem]/7))))) - ((int) Math.ceil(0.97 * ((100+(60.0*(Seed[draggingItem]-(7*(Seed[draggingItem]/7))))) - item[draggingItem].y))));
-            else if(item[draggingItem].x>=(50+(80*(Seed[draggingItem]/7)))&&item[draggingItem].y<=(100+(60*(Seed[draggingItem]-(7*(Seed[draggingItem]/7))))))
-               item[draggingItem].setLocation((50+(80*(Seed[draggingItem]/7))) - ((int) Math.ceil(0.97 * ((50.0+(80*(Seed[draggingItem]/7))) - item[draggingItem].x))), (100+(60*(Seed[draggingItem]-(7*(Seed[draggingItem]/7))))) - ((int) Math.floor(0.97 * ((100+(60.0*(Seed[draggingItem]-(7*(Seed[draggingItem]/7))))) - item[draggingItem].y))));
+            if(item[draggingItem].x<=(50+(120*(Seed[draggingItem]/8)))&&item[draggingItem].y<=(100+(80*(Seed[draggingItem]-(7*(Seed[draggingItem]/7))))))
+               item[draggingItem].setLocation((50+(120*(Seed[draggingItem]/7))) - ((int) Math.floor(0.97 * ((50.0+(120*(Seed[draggingItem]/7))) - item[draggingItem].x))), (100+(80*(Seed[draggingItem]-(7*(Seed[draggingItem]/7))))) - ((int) Math.floor(0.97 * ((100+(80.0*(Seed[draggingItem]-(7*(Seed[draggingItem]/7))))) - item[draggingItem].y))));
+            else if(item[draggingItem].x>=(50+(120*(Seed[draggingItem]/7)))&&item[draggingItem].y>=(100+(80*(Seed[draggingItem]-(7*(Seed[draggingItem]/7))))))
+               item[draggingItem].setLocation((50+(120*(Seed[draggingItem]/7))) - ((int) Math.ceil(0.97 * ((50.0+(120*(Seed[draggingItem]/7))) - item[draggingItem].x))), (100+(80*(Seed[draggingItem]-(7*(Seed[draggingItem]/7))))) - ((int) Math.ceil(0.97 * ((100+(80.0*(Seed[draggingItem]-(7*(Seed[draggingItem]/7))))) - item[draggingItem].y))));
+            else if(item[draggingItem].x<=(50+(120*(Seed[draggingItem]/7)))&&item[draggingItem].y>=(100+(80*(Seed[draggingItem]-(7*(Seed[draggingItem]/7))))))
+               item[draggingItem].setLocation((50+(120*(Seed[draggingItem]/7))) - ((int) Math.floor(0.97 * ((50.0+(120*(Seed[draggingItem]/7))) - item[draggingItem].x))), (100+(80*(Seed[draggingItem]-(7*(Seed[draggingItem]/7))))) - ((int) Math.ceil(0.97 * ((100+(80.0*(Seed[draggingItem]-(7*(Seed[draggingItem]/7))))) - item[draggingItem].y))));
+            else if(item[draggingItem].x>=(50+(120*(Seed[draggingItem]/7)))&&item[draggingItem].y<=(100+(80*(Seed[draggingItem]-(7*(Seed[draggingItem]/7))))))
+               item[draggingItem].setLocation((50+(120*(Seed[draggingItem]/7))) - ((int) Math.ceil(0.97 * ((50.0+(120*(Seed[draggingItem]/7))) - item[draggingItem].x))), (100+(80*(Seed[draggingItem]-(7*(Seed[draggingItem]/7))))) - ((int) Math.floor(0.97 * ((100+(80.0*(Seed[draggingItem]-(7*(Seed[draggingItem]/7))))) - item[draggingItem].y))));
          }
       }
 
@@ -462,7 +463,7 @@ public class Render extends JPanel implements Runnable {
    public void IdentityMatchingL(boolean show){
       IdentityFlashcards[4] = show;
       resetMatching(true);
-      SetRenderSize(600,600);
+      SetRenderSize(1000,710);
    }
 
    // Identities select random card //

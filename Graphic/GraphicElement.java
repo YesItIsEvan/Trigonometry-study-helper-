@@ -742,6 +742,7 @@ public class GraphicElement{
    }
 
    public static void IdentitiesMatching(Graphics g, int FrameWidth,int FrameHeight,Rectangle[] draggable,Rectangle[] targets,boolean[] show){
+      g.setFont(GraphicVar.promptFont);
       for(int i=0;i<targets.length;i++)
          if(show[i]){
             g.setColor(GraphicVar.flashcardColor());
@@ -749,6 +750,17 @@ public class GraphicElement{
             g.setColor(Color.black);
             g.drawRoundRect(targets[i].x + 3, targets[i].y + 3, targets[i].width - 6, targets[i].height - 6, 10, 10);  // Draw drop target
             g.drawRoundRect(targets[i].x, targets[i].y, targets[i].width, targets[i].height,10,10);  // Draw drop target
+            switch (i) {
+               case 0:
+                  g.drawString("tanθ", targets[i].x+32, targets[i].y+35);
+                  break;
+               case 1:
+                  g.drawString("cotθ", targets[i].x+32, targets[i].y+35);
+                  break;
+               case 2:
+                  g.drawString("1", targets[i].x+48, targets[i].y+35);
+                  break;
+            }
          }
       for(int i=0;i<draggable.length;i++)
          if(show[i]){
@@ -757,12 +769,28 @@ public class GraphicElement{
             g.setColor(Color.black);
             g.drawRoundRect(draggable[i].x + 3, draggable[i].y + 3, draggable[i].width - 6, draggable[i].height - 6, 10, 10);  // Draw draggable item
             g.drawRoundRect(draggable[i].x, draggable[i].y, draggable[i].width, draggable[i].height, 10, 10);  // Draw draggable item
+            switch (i) {
+               case 0:
+                  g.drawString("sinθ", draggable[i].x+34, draggable[i].y+26);
+                  g.drawLine(draggable[i].x+29, draggable[i].y+30,draggable[i].x+71,draggable[i].y+30);
+                  g.drawString("cosθ", draggable[i].x+33, draggable[i].y+44);
+                  break;
+               case 1:
+                  g.drawString("cosθ", draggable[i].x+33, draggable[i].y+26);
+                  g.drawLine(draggable[i].x+29, draggable[i].y+30,draggable[i].x+71,draggable[i].y+30);
+                  g.drawString("sinθ", draggable[i].x+34, draggable[i].y+44);
+                  break;
+               case 2:
+                  g.drawString("sin²θ+cos²θ", draggable[i].x+6, draggable[i].y+35);
+                  break;
+            }
          }
    }
 
    public static void IdentityFlashcardsG(Graphics g){
       
    ///////  Flashcard Options  ///////
+      g.setColor(GraphicVar.title());
       g.setFont(GraphicVar.promptTitleFont);
       g.drawString("Identity Flashcards",10,95);
       g.setColor(GraphicVar.flashcardBackColor());
@@ -779,6 +807,7 @@ public class GraphicElement{
    public static void TriangleFlashcardsG(Graphics g){
       
    ///////  Flashcard Options  ///////
+      g.setColor(GraphicVar.title());
       g.setFont(GraphicVar.promptTitleFont);
       g.drawString("Triangle Flashcards",10,95);
       g.setColor(GraphicVar.flashcardBackColor());
@@ -794,6 +823,7 @@ public class GraphicElement{
    public static void StudyOptionsPrompt(Graphics g,int FrameHeight){
       
    ///////  Study Options  ///////
+      g.setColor(GraphicVar.title());
       g.setFont(GraphicVar.promptTitleFont);
       g.drawString("Study Options",10,95);
       g.drawString("Settings",10,FrameHeight-25);
@@ -885,13 +915,15 @@ public class GraphicElement{
             break;
       }
    }
-   
-   public static void NonInteractables(Graphics g,int FrameWidth,int FrameHeight){
-   
-   ///////  Refresh/Paint Background  ///////
+
+   public static void Background(Graphics g, int FrameWidth, int FrameHeight){
+      ///////  Refresh/Paint Background  ///////
       g.setColor(GraphicVar.backgroundColor());
       g.fillRect(0,0,FrameWidth,FrameHeight);
-   
+   }
+
+   public static void NonInteractables(Graphics g,int FrameWidth,int FrameHeight){
+
    ///////  Borders  ///////
       g.setColor(GraphicVar.edgesColor());
       g.fillRect(0,0,FrameWidth,71);
