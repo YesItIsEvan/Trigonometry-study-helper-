@@ -760,6 +760,12 @@ public class GraphicElement{
                case 2:
                   g.drawString("1", targets[i].x+48, targets[i].y+35);
                   break;
+               case 3:
+                  g.drawString("1", targets[i].x+48, targets[i].y+26);
+                  g.drawLine(targets[i].x+29, targets[i].y+30,targets[i].x+71,targets[i].y+30);
+                  g.drawString("sinθ", targets[i].x+34, targets[i].y+44);
+                  break;
+
             }
          }
       for(int i=0;i<draggable.length;i++)
@@ -783,6 +789,10 @@ public class GraphicElement{
                case 2:
                   g.drawString("sin²θ+cos²θ", draggable[i].x+6, draggable[i].y+35);
                   break;
+               case 3:
+                  g.drawString("cscθ", draggable[i].x+32, draggable[i].y+35);
+                  break;
+
             }
          }
    }
@@ -969,11 +979,11 @@ public class GraphicElement{
 
       ///////  dot dot dot  ///////
       if(0<=t&&t<60)
-         g.drawString("0 o o",(FrameWidth/2)+25,(FrameHeight/2)+15);
+         g.drawString("θ o o",(FrameWidth/2)+25,(FrameHeight/2)+15);
       if(60<=t&&t<120)
-         g.drawString("o 0 o",(FrameWidth/2)+25,(FrameHeight/2)+15);
+         g.drawString("o θ o",(FrameWidth/2)+25,(FrameHeight/2)+15);
       if(120<=t&&t<180)
-         g.drawString("o o 0",(FrameWidth/2)+25,(FrameHeight/2)+15);
+         g.drawString("o o θ",(FrameWidth/2)+25,(FrameHeight/2)+15);
 
       ///////  edges  ///////
       g.setColor(GraphicVar.edgesColor());
