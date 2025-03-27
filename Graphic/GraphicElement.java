@@ -773,6 +773,9 @@ public class GraphicElement{
                   g.drawLine(targets[i].x+29, targets[i].y+30,targets[i].x+71,targets[i].y+30);
                   g.drawString("sinθ", targets[i].x+34, targets[i].y+44);
                   break;
+               case 4:
+                  g.drawString("sec²θ", targets[i].x+30, targets[i].y+35);
+                  break;
                default:
                   g.drawString("W.I.P.", targets[i].x+25, targets[i].y+35);
 
@@ -801,6 +804,9 @@ public class GraphicElement{
                   break;
                case 3:
                   g.drawString("cscθ", draggable[i].x+32, draggable[i].y+35);
+                  break;
+               case 4:
+                  g.drawString("tan²θ+1",draggable[i].x+22, draggable[i].y+35);
                   break;
                default:
                   g.drawString("W.I.P.", draggable[i].x+25, draggable[i].y+35);
