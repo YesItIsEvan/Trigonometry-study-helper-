@@ -742,6 +742,14 @@ public class GraphicElement{
    }
 
    public static void IdentitiesMatching(Graphics g, int FrameWidth,int FrameHeight,Rectangle[] draggable,Rectangle[] targets,boolean[] show){
+      g.setFont(GraphicVar.titleFont);
+      g.setColor(GraphicVar.titleShadow());
+      g.drawString("Back",(FrameWidth/2)-36,FrameHeight-(FrameHeight/8)+2);
+      g.drawString("Reshuffle",(FrameWidth/2)-62,FrameHeight-(FrameHeight/8)+37);
+      g.setColor(GraphicVar.flashcardBackColor());
+      g.drawString("Back",(FrameWidth/2)-34,FrameHeight-(FrameHeight/8));
+      g.setColor(GraphicVar.flashcardNextColor());
+      g.drawString("Reshuffle",(FrameWidth/2)-60,FrameHeight-(FrameHeight/8)+35);
       g.setFont(GraphicVar.promptFont);
       for(int i=0;i<targets.length;i++)
          if(show[i]){
@@ -765,6 +773,8 @@ public class GraphicElement{
                   g.drawLine(targets[i].x+29, targets[i].y+30,targets[i].x+71,targets[i].y+30);
                   g.drawString("sinθ", targets[i].x+34, targets[i].y+44);
                   break;
+               default:
+                  g.drawString("W.I.P.", targets[i].x+25, targets[i].y+35);
 
             }
          }
@@ -792,6 +802,8 @@ public class GraphicElement{
                case 3:
                   g.drawString("cscθ", draggable[i].x+32, draggable[i].y+35);
                   break;
+               default:
+                  g.drawString("W.I.P.", draggable[i].x+25, draggable[i].y+35);
 
             }
          }

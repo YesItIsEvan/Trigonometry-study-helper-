@@ -13,7 +13,7 @@ public class Render extends JPanel implements Runnable {
 
    Thread thread;
    int frameRate = 60;
-   Dimension windowSize = new Dimension(700,500);
+   Dimension targetWindowSize = new Dimension(700,500);
    int timer = 0;
    int Mouse_x;
    int Mouse_y;
@@ -356,6 +356,10 @@ public class Render extends JPanel implements Runnable {
          /// Matching ///
          else if(ClickBooleans.PlayIdentityMatching(x, y, IdentityFlashcards))
             IdentityMatchingL(true);
+         else if(ClickBooleans.ReshuffleIdentityMatching(x, y, IdentityFlashcards))
+            resetMatching(true);
+         else if(ClickBooleans.ExitIdentityMatching(x, y, IdentityFlashcards))
+            IdentityMatchingL(false);
 
       }
    }
@@ -463,7 +467,10 @@ public class Render extends JPanel implements Runnable {
    public void IdentityMatchingL(boolean show){
       IdentityFlashcards[4] = show;
       resetMatching(true);
-      SetRenderSize(1000,710);
+      if(show)
+         SetRenderSize(1000,786);
+      else
+         SetRenderSize(700,500);
    }
 
    // Identities select random card //
@@ -601,7 +608,7 @@ public class Render extends JPanel implements Runnable {
 
    public void SetRenderSize(int width, int height){
       setSize(new Dimension(width,height));
-      windowSize = new Dimension(width,height);
+      targetWindowSize = new Dimension(width,height);
    }
    
    public static int random(int min, int max)

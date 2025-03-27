@@ -1,6 +1,4 @@
-import javax.swing.*;
 import javax.swing.JFrame;
-import java.awt.*;
 
 public class Frame extends JFrame{
 
@@ -10,23 +8,23 @@ public class Frame extends JFrame{
    {
       this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
       this.add(render);
-      this.setSize(render.windowSize);
+      this.setSize(render.targetWindowSize);
       this.setTitle("Trigonometry Study Helper");
       this.setVisible(true);
 
-      long period = 1000/render.frameRate;
+      long period = 1000/(render.frameRate/2);
       long beginTime = System.currentTimeMillis();
       long currentTime;
       while(true){
 
-         if(getWidth() < render.windowSize.width && render.mouse.event[2])
-            setSize(getWidth()+1,getHeight());
-         if(getWidth() > render.windowSize.width && render.mouse.event[2])
-            setSize(getWidth()-1,getHeight());
-         if(getHeight() < render.windowSize.height && render.mouse.event[2])
-            setSize(getWidth(),getHeight()+1);
-         if(getHeight() > render.windowSize.height && render.mouse.event[2])
-            setSize(getWidth(),getHeight()-1);
+         if(getWidth() < render.targetWindowSize.width && render.mouse.event[2])
+            setSize(getWidth()+2,getHeight());
+         if(getWidth() > render.targetWindowSize.width && render.mouse.event[2])
+            setSize(getWidth()-2,getHeight());
+         if(getHeight() < render.targetWindowSize.height && render.mouse.event[2])
+            setSize(getWidth(),getHeight()+2);
+         if(getHeight() > render.targetWindowSize.height && render.mouse.event[2])
+            setSize(getWidth(),getHeight()-2);
 
          currentTime = System.currentTimeMillis();
       try

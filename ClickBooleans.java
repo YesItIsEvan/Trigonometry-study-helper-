@@ -188,7 +188,21 @@ public class ClickBooleans{
       else
          return false;
    }
-   
+
+   public static boolean ExitIdentityMatching(int x, int y,boolean[] IdentityFlashcards){
+      if(x > (WindowWidth/2)-36 && x < (WindowWidth/2)+36 && y > WindowHeight-(WindowHeight/8)-23 && y < WindowHeight-(WindowHeight/8)+2 && IdentityFlashcards[4])
+         return true;
+      else
+         return false;
+   }
+
+   public static boolean ReshuffleIdentityMatching(int x, int y,boolean[] IdentityFlashcards){
+      if(x > (WindowWidth/2)-62 && x < (WindowWidth/2)+70 && y > WindowHeight-(WindowHeight/8)+12 && y < WindowHeight-(WindowHeight/8)+37 && IdentityFlashcards[4])
+         return true;
+      else
+         return false;
+   }
+
    public static boolean StudyReciprocalIdentities(int x, int y, boolean[] IdentityFlashcards){
       if(x > 15 && x < 93 && y > 100 && y < 115 && FalseBooleanArray(IdentityFlashcards))
          return true;
