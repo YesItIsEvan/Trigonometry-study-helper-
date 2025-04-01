@@ -746,6 +746,7 @@ public class GraphicElement{
       g.setColor(GraphicVar.titleShadow());
       g.drawString("Back",(FrameWidth/2)-36,FrameHeight-(FrameHeight/8)+2);
       g.drawString("Reshuffle",(FrameWidth/2)-62,FrameHeight-(FrameHeight/8)+37);
+      Arrow(g,0,475,393);
       g.setColor(GraphicVar.flashcardBackColor());
       g.drawString("Back",(FrameWidth/2)-34,FrameHeight-(FrameHeight/8));
       g.setColor(GraphicVar.flashcardNextColor());
@@ -775,6 +776,9 @@ public class GraphicElement{
                   break;
                case 4:
                   g.drawString("sec²θ", targets[i].x+30, targets[i].y+35);
+                  break;
+               case 5:
+                  g.drawString("cot²θ", targets[i].x+30, targets[i].y+35);
                   break;
                default:
                   g.drawString("W.I.P.", targets[i].x+25, targets[i].y+35);
@@ -807,6 +811,9 @@ public class GraphicElement{
                   break;
                case 4:
                   g.drawString("tan²θ+1",draggable[i].x+22, draggable[i].y+35);
+                  break;
+               case 5:
+                  g.drawString("csc²θ-1",draggable[i].x+22, draggable[i].y+35);
                   break;
                default:
                   g.drawString("W.I.P.", draggable[i].x+25, draggable[i].y+35);
@@ -878,6 +885,16 @@ public class GraphicElement{
       g.drawLine(170,120,185,135);
       g.drawLine(170,130,175,130);
       g.drawLine(175,135,175,130);
+   }
+
+   private static void Arrow(Graphics g,double rotation_rad, int x, int y){
+      long stemYoffset = Math.round(75 * Math.sin(rotation_rad));
+      long stemXoffset = Math.round(75 * Math.cos(rotation_rad));
+
+      int[] poly_x = {x+((int) stemXoffset),x+((int) stemXoffset)+((int)Math.round(25*Math.cos(rotation_rad+(3*Math.PI/4)))),x+(int)(Math.round(5*Math.cos(rotation_rad-Math.PI/2))+Math.round(60*Math.cos(rotation_rad))),x+((int)Math.round(5*Math.cos(rotation_rad-Math.PI/2))),x+((int)Math.round(5*Math.cos(rotation_rad+Math.PI/2))),x+(int)(Math.round(5*Math.cos(rotation_rad+Math.PI/2))+Math.round(60*Math.cos(rotation_rad))),x+((int) stemXoffset)+((int)Math.round(25*Math.cos(rotation_rad-(3*Math.PI/4))))};
+      int[] poly_y = {y-((int) stemYoffset),y-((int) stemYoffset)-((int)Math.round(25*Math.sin(rotation_rad+(3*Math.PI/4)))),y+(int)(Math.round(5*Math.sin(rotation_rad-Math.PI/2))+Math.round(60*Math.sin(rotation_rad))),y+((int)Math.round(5*Math.sin(rotation_rad-Math.PI/2))),y+((int)Math.round(5*Math.sin(rotation_rad+Math.PI/2))),y+(int)(Math.round(5*Math.sin(rotation_rad+Math.PI/2))+Math.round(60*Math.sin(rotation_rad))),y+((int) stemYoffset)-((int)Math.round(25*Math.sin(rotation_rad-(3*Math.PI/4))))};
+      Polygon head = new Polygon(poly_x,poly_y,7);
+      g.fillPolygon(head);
    }
    
    public static void SettingsMeny(Graphics g, int FrameWidth,int FrameHeight){
