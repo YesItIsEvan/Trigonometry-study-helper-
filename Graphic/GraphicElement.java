@@ -741,12 +741,12 @@ public class GraphicElement{
       }
    }
 
-   public static void IdentitiesMatching(Graphics g, int FrameWidth,int FrameHeight,Rectangle[] draggable,Rectangle[] targets,boolean[] show){
+   public static void IdentitiesMatching(Graphics g, int FrameWidth,int FrameHeight,Rectangle[] draggable,Rectangle[] targets,boolean[] show,int t){
+      Arrow(g,t*0.01,478,390);
       g.setFont(GraphicVar.titleFont);
       g.setColor(GraphicVar.titleShadow());
       g.drawString("Back",(FrameWidth/2)-36,FrameHeight-(FrameHeight/8)+2);
       g.drawString("Reshuffle",(FrameWidth/2)-62,FrameHeight-(FrameHeight/8)+37);
-      Arrow(g,0,475,393);
       g.setColor(GraphicVar.flashcardBackColor());
       g.drawString("Back",(FrameWidth/2)-34,FrameHeight-(FrameHeight/8));
       g.setColor(GraphicVar.flashcardNextColor());
@@ -888,13 +888,26 @@ public class GraphicElement{
    }
 
    private static void Arrow(Graphics g,double rotation_rad, int x, int y){
+      Color Original = g.getColor();
       long stemYoffset = Math.round(75 * Math.sin(rotation_rad));
       long stemXoffset = Math.round(75 * Math.cos(rotation_rad));
 
-      int[] poly_x = {x+((int) stemXoffset),x+((int) stemXoffset)+((int)Math.round(25*Math.cos(rotation_rad+(3*Math.PI/4)))),x+(int)(Math.round(5*Math.cos(rotation_rad-Math.PI/2))+Math.round(60*Math.cos(rotation_rad))),x+((int)Math.round(5*Math.cos(rotation_rad-Math.PI/2))),x+((int)Math.round(5*Math.cos(rotation_rad+Math.PI/2))),x+(int)(Math.round(5*Math.cos(rotation_rad+Math.PI/2))+Math.round(60*Math.cos(rotation_rad))),x+((int) stemXoffset)+((int)Math.round(25*Math.cos(rotation_rad-(3*Math.PI/4))))};
-      int[] poly_y = {y-((int) stemYoffset),y-((int) stemYoffset)-((int)Math.round(25*Math.sin(rotation_rad+(3*Math.PI/4)))),y+(int)(Math.round(5*Math.sin(rotation_rad-Math.PI/2))+Math.round(60*Math.sin(rotation_rad))),y+((int)Math.round(5*Math.sin(rotation_rad-Math.PI/2))),y+((int)Math.round(5*Math.sin(rotation_rad+Math.PI/2))),y+(int)(Math.round(5*Math.sin(rotation_rad+Math.PI/2))+Math.round(60*Math.sin(rotation_rad))),y+((int) stemYoffset)-((int)Math.round(25*Math.sin(rotation_rad-(3*Math.PI/4))))};
-      Polygon head = new Polygon(poly_x,poly_y,7);
-      g.fillPolygon(head);
+      int x2 = x+3;
+      int y2 = y-3;
+
+      int[] poly_x1 = {x+((int) stemXoffset),x+((int) stemXoffset)+((int)Math.round(25*Math.cos(rotation_rad+(3*Math.PI/4)))),x+(int)(-Math.round(5*Math.cos(-rotation_rad+Math.PI/2))+Math.round(60*Math.cos(rotation_rad))),x-((int)Math.round(5*Math.cos(-rotation_rad+Math.PI/2))),x-((int)Math.round(5*Math.cos(-rotation_rad-Math.PI/2))),x+(int)(-Math.round(5*Math.cos(-rotation_rad-Math.PI/2))+Math.round(60*Math.cos(rotation_rad))),x+((int) stemXoffset)+((int)Math.round(25*Math.cos(-rotation_rad+(3*Math.PI/4))))};
+      int[] poly_y1 = {y-((int) stemYoffset),y-((int) stemYoffset)-((int)Math.round(25*Math.sin(rotation_rad+(3*Math.PI/4)))),y+(int)(-Math.round(5*Math.sin(-rotation_rad+Math.PI/2))-Math.round(60*Math.sin(rotation_rad))),y-((int)Math.round(5*Math.sin(-rotation_rad+Math.PI/2))),y-((int)Math.round(5*Math.sin(-rotation_rad-Math.PI/2))),y+(int)(-Math.round(5*Math.sin(-rotation_rad-Math.PI/2))-Math.round(60*Math.sin(rotation_rad))),y+((int) -stemYoffset)+((int)Math.round(25*Math.sin(-rotation_rad+(3*Math.PI/4))))};
+      Polygon Arrow1 = new Polygon(poly_x1,poly_y1,7);
+
+      int[] poly_x2 = {x2+((int) stemXoffset),x2+((int) stemXoffset)+((int)Math.round(25*Math.cos(rotation_rad+(3*Math.PI/4)))),x2+(int)(-Math.round(5*Math.cos(-rotation_rad+Math.PI/2))+Math.round(60*Math.cos(rotation_rad))),x2-((int)Math.round(5*Math.cos(-rotation_rad+Math.PI/2))),x2-((int)Math.round(5*Math.cos(-rotation_rad-Math.PI/2))),x2+(int)(-Math.round(5*Math.cos(-rotation_rad-Math.PI/2))+Math.round(60*Math.cos(rotation_rad))),x2+((int) stemXoffset)+((int)Math.round(25*Math.cos(-rotation_rad+(3*Math.PI/4))))};
+      int[] poly_y2 = {y2-((int) stemYoffset),y2-((int) stemYoffset)-((int)Math.round(25*Math.sin(rotation_rad+(3*Math.PI/4)))),y2+(int)(-Math.round(5*Math.sin(-rotation_rad+Math.PI/2))-Math.round(60*Math.sin(rotation_rad))),y2-((int)Math.round(5*Math.sin(-rotation_rad+Math.PI/2))),y2-((int)Math.round(5*Math.sin(-rotation_rad-Math.PI/2))),y2+(int)(-Math.round(5*Math.sin(-rotation_rad-Math.PI/2))-Math.round(60*Math.sin(rotation_rad))),y2+((int) -stemYoffset)+((int)Math.round(25*Math.sin(-rotation_rad+(3*Math.PI/4))))};
+      Polygon Arrow2 = new Polygon(poly_x2,poly_y2,7);
+
+      g.setColor(GraphicVar.titleShadow());
+      g.fillPolygon(Arrow1);
+      g.setColor(GraphicVar.title());
+      g.fillPolygon(Arrow2);
+      g.setColor(Original);
    }
    
    public static void SettingsMeny(Graphics g, int FrameWidth,int FrameHeight){

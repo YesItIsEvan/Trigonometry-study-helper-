@@ -67,7 +67,6 @@ public class Render extends JPanel implements Runnable {
       if(mouse.event[m.mouse.exited])
          GraphicElement.Waiting(g, timer, getWidth(), getHeight());
       else {
-         timer = 0;
          GraphicElement.Background(g,getWidth(),getHeight());
          int j = -1;
          int k = -1;
@@ -93,7 +92,7 @@ public class Render extends JPanel implements Runnable {
                      GraphicElement.AllIdentitiesG(g, getWidth(), getHeight(), AllIdentities);
                      break;
                   case (4):
-                     GraphicElement.IdentitiesMatching(g, getWidth(), getHeight(), item, target, showItemSet);
+                     GraphicElement.IdentitiesMatching(g, getWidth(), getHeight(), item, target, showItemSet,timer);
                      break;
                   default:
                      GraphicElement.IdentityFlashcardsG(g);
