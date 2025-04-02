@@ -742,7 +742,7 @@ public class GraphicElement{
    }
 
    public static void IdentitiesMatching(Graphics g, int FrameWidth,int FrameHeight,Rectangle[] draggable,Rectangle[] targets,boolean[] show,int t){
-      Arrow(g,t*0.01,478,390);
+      Arrow(g,0,(FrameWidth/2)-40,390+((int)Math.round(10*Math.sin(t*Math.PI/90))));
       g.setFont(GraphicVar.titleFont);
       g.setColor(GraphicVar.titleShadow());
       g.drawString("Back",(FrameWidth/2)-36,FrameHeight-(FrameHeight/8)+2);
@@ -923,6 +923,19 @@ public class GraphicElement{
       g.fillPolygon(x,y,3);
       x[0] = 217;x[1] = 210;x[2] = 210;
       g.fillPolygon(x,y,3);
+   //////  Credits  //////
+      g.setColor(Color.black);
+      g.fillRoundRect(400,120,210,300,10,10);
+      g.setColor(Color.white);
+      g.setFont(new Font("Helvetica",1,15));
+      g.drawString("Credits",480,135);
+      g.drawString("Developer",400,150);
+      g.drawString("Evan Ozment (YesItIsEvan)",410,165);
+      g.drawString("Alpha Testers",400,180);
+      g.drawString("Catherine Book",410,195);
+      g.drawString("Addison Crain",410,210);
+      g.drawString("Sarah Rockforte",410,225);
+
    }
 
    public static void PaletteChoice(Graphics g, ColorPalette palette){
@@ -999,8 +1012,8 @@ public class GraphicElement{
       g.setColor(GraphicVar.edgesColor());
       g.fillRect(FrameWidth-70,FrameHeight-14,70,14);
       g.setColor(Color.black);
-      g.fillRect(FrameWidth-70,FrameHeight-16,3,14);
-      g.drawString("V 0.2  2024",FrameWidth-65,FrameHeight-3);
+      g.fillRect(FrameWidth-75,FrameHeight-16,3,16);
+      g.drawString("V 0.2.6 2025",FrameWidth-70,FrameHeight-3);
    
    ///////  Title  ///////
       g.setFont(GraphicVar.titleFont);
