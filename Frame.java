@@ -1,8 +1,11 @@
 import javax.swing.JFrame;
+import java.awt.*;
+import java.awt.geom.Dimension2D;
 
 public class Frame extends JFrame{
 
    Render render = new Render();
+   double[] WindowDecimal = new double[]{10,10};
    
    Frame()
    {
@@ -16,16 +19,8 @@ public class Frame extends JFrame{
       long beginTime = System.currentTimeMillis();
       long currentTime;
       while(true){
-
-         if(getWidth() < render.targetWindowSize.width && render.mouse.event[2])
-            setSize(getWidth()+2,getHeight());
-         if(getWidth() > render.targetWindowSize.width && render.mouse.event[2])
-            setSize(getWidth()-2,getHeight());
-         if(getHeight() < render.targetWindowSize.height && render.mouse.event[2])
-            setSize(getWidth(),getHeight()+2);
-         if(getHeight() > render.targetWindowSize.height && render.mouse.event[2])
-            setSize(getWidth(),getHeight()-2);
-
+         WindowDecimal = new double[]{WindowDecimal[0]-(0.02*(WindowDecimal[0]-render.targetWindowSize.width)),WindowDecimal[1]-(0.02*(WindowDecimal[1]-render.targetWindowSize.height))};
+         setSize((int)Math.round(WindowDecimal[0]),(int)Math.round(WindowDecimal[1]));
          currentTime = System.currentTimeMillis();
       try
       {

@@ -742,7 +742,10 @@ public class GraphicElement{
    }
 
    public static void IdentitiesMatching(Graphics g, int FrameWidth,int FrameHeight,Rectangle[] draggable,Rectangle[] targets,boolean[] show,int t){
-      Arrow(g,0,(FrameWidth/2)-40,390+((int)Math.round(10*Math.sin(t*Math.PI/90))));
+      if(FalseBooleanArray(show))
+         ArrowCelebration(g,FrameWidth,FrameHeight,t);
+      else
+         Arrow(g,0,(FrameWidth/2)-40,390+((int)Math.round(10*Math.sin(t*Math.PI/90))));
       g.setFont(GraphicVar.titleFont);
       g.setColor(GraphicVar.titleShadow());
       g.drawString("Back",(FrameWidth/2)-36,FrameHeight-(FrameHeight/8)+2);
@@ -780,6 +783,9 @@ public class GraphicElement{
                case 5:
                   g.drawString("cot²θ", targets[i].x+30, targets[i].y+35);
                   break;
+               case 6:
+                  g.drawString("-sinθ", targets[i].x+28, targets[i].y+35);
+                  break;
                default:
                   g.drawString("W.I.P.", targets[i].x+25, targets[i].y+35);
 
@@ -814,6 +820,9 @@ public class GraphicElement{
                   break;
                case 5:
                   g.drawString("csc²θ-1",draggable[i].x+22, draggable[i].y+35);
+                  break;
+               case 6:
+                  g.drawString("sin-θ", draggable[i].x+28, draggable[i].y+35);
                   break;
                default:
                   g.drawString("W.I.P.", draggable[i].x+25, draggable[i].y+35);
@@ -907,6 +916,17 @@ public class GraphicElement{
       g.fillPolygon(Arrow1);
       g.setColor(GraphicVar.title());
       g.fillPolygon(Arrow2);
+      g.setColor(Original);
+   }
+
+   public static void ArrowCelebration(Graphics g, int FrameWidth,int FrameHeight,int t){
+      Color Original = g.getColor();
+      Arrow(g,(Math.PI/90)*(-45*Math.cos((t*Math.PI)/90)+45),(FrameWidth/2)+(int)Math.round(200*Math.sin((Math.PI/90)*t)),(FrameHeight/2)+(int)Math.round(75*Math.sin((Math.PI/45)*t)));
+      g.setFont(GraphicVar.titleFont);
+      g.setColor(GraphicVar.titleShadow());
+      g.drawString("Cleared!",(FrameWidth/2)-52,(FrameHeight/2)+92);
+      g.setColor(GraphicVar.title());
+      g.drawString("Cleared!",(FrameWidth/2)-50,(FrameHeight/2)+90);
       g.setColor(Original);
    }
    
@@ -1054,5 +1074,13 @@ public class GraphicElement{
       g.fillRect(0,70,FrameWidth,3);
       g.fillRect(0,FrameHeight-17,FrameWidth,3);
 
+
+   }
+
+   private static boolean FalseBooleanArray(boolean[] Array){
+      for(int i=0;i<Array.length;i++)
+         if(Array[i])
+            return false;
+      return true;
    }
 }
