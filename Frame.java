@@ -5,7 +5,7 @@ import java.awt.geom.Dimension2D;
 public class Frame extends JFrame{
 
    Render render = new Render();
-   double[] WindowDecimal = new double[]{10,10};
+   double[] WindowDecimal = new double[]{render.targetWindowSize.width,render.targetWindowSize.height};
    
    Frame()
    {
@@ -15,11 +15,11 @@ public class Frame extends JFrame{
       this.setTitle("Trigonometry Study Helper");
       this.setVisible(true);
 
-      long period = 1000/(render.frameRate/2);
+      long period = 1000/(render.frameRate/3);
       long beginTime = System.currentTimeMillis();
       long currentTime;
       while(true){
-         WindowDecimal = new double[]{WindowDecimal[0]-(0.02*(WindowDecimal[0]-render.targetWindowSize.width)),WindowDecimal[1]-(0.02*(WindowDecimal[1]-render.targetWindowSize.height))};
+         WindowDecimal = new double[]{WindowDecimal[0]-(0.03*(WindowDecimal[0]-render.targetWindowSize.width)),WindowDecimal[1]-(0.03*(WindowDecimal[1]-render.targetWindowSize.height))};
          setSize((int)Math.round(WindowDecimal[0]),(int)Math.round(WindowDecimal[1]));
          currentTime = System.currentTimeMillis();
       try

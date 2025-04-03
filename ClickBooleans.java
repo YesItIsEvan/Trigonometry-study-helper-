@@ -176,7 +176,7 @@ public class ClickBooleans{
    }
 
    public static boolean ExitIdentityFlashcards(int x,int y,boolean[] IdentityFlashcards){
-      if(x > 10 && x < 55 && y > 190 && y < 215 && FalseBooleanArray(IdentityFlashcards))
+      if(x > 10 && x < 55 && y > 198 && y < 215 && FalseBooleanArray(IdentityFlashcards))
          return true;
       else
          return false;

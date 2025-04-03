@@ -786,6 +786,24 @@ public class GraphicElement{
                case 6:
                   g.drawString("-sinθ", targets[i].x+28, targets[i].y+35);
                   break;
+               case 7:
+                  g.drawString("sec-θ", targets[i].x+28, targets[i].y+35);
+                  break;
+               case 8:
+                  g.drawString("tan-θ", targets[i].x+28, targets[i].y+35);
+                  break;
+               case 9:
+                  g.drawString("cosθ", targets[i].x+30, targets[i].y+35);
+                  break;
+               case 10:
+                  g.drawString("-cscθ", targets[i].x+28, targets[i].y+35);
+                  break;
+               case 11:
+                  g.drawString("secθ", targets[i].x+30, targets[i].y+35);
+                  break;
+               case 12:
+                  g.drawString("cos²θ", targets[i].x+30, targets[i].y+35);
+                  break;
                default:
                   g.drawString("W.I.P.", targets[i].x+25, targets[i].y+35);
 
@@ -823,6 +841,26 @@ public class GraphicElement{
                   break;
                case 6:
                   g.drawString("sin-θ", draggable[i].x+28, draggable[i].y+35);
+                  break;
+               case 7:
+                  g.drawString("secθ", draggable[i].x+30, draggable[i].y+35);
+                  break;
+               case 8:
+                  g.drawString("-tanθ", draggable[i].x+28, draggable[i].y+35);
+                  break;
+               case 9:
+                  g.drawString("cos-θ", draggable[i].x+28, draggable[i].y+35);
+                  break;
+               case 10:
+                  g.drawString("csc-θ", draggable[i].x+28, draggable[i].y+35);
+                  break;
+               case 11:
+                  g.drawString("1", draggable[i].x+48, draggable[i].y+26);
+                  g.drawLine(draggable[i].x+29, draggable[i].y+30,draggable[i].x+71,draggable[i].y+30);
+                  g.drawString("cosθ", draggable[i].x+33, draggable[i].y+44);
+                  break;
+               case 12:
+                  g.drawString("1-sin²θ",draggable[i].x+22, draggable[i].y+35);
                   break;
                default:
                   g.drawString("W.I.P.", draggable[i].x+25, draggable[i].y+35);
@@ -1033,7 +1071,7 @@ public class GraphicElement{
       g.fillRect(FrameWidth-70,FrameHeight-14,70,14);
       g.setColor(Color.black);
       g.fillRect(FrameWidth-75,FrameHeight-16,3,16);
-      g.drawString("V 0.2.6 2025",FrameWidth-70,FrameHeight-3);
+      g.drawString("V 0.2.8 2025",FrameWidth-70,FrameHeight-3);
    
    ///////  Title  ///////
       g.setFont(GraphicVar.titleFont);
@@ -1065,6 +1103,10 @@ public class GraphicElement{
          g.drawString("o θ o",(FrameWidth/2)+25,(FrameHeight/2)+15);
       if(120<=t&&t<180)
          g.drawString("o o θ",(FrameWidth/2)+25,(FrameHeight/2)+15);
+
+      ///////  note  ///////
+      g.setFont(new Font("Times New Roman",1,12));
+      g.drawString("(Cursor out of bound)",(FrameWidth/2)-125,(FrameHeight/2)+30);
 
       ///////  edges  ///////
       g.setColor(GraphicVar.edgesColor());
