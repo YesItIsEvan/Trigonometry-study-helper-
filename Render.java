@@ -30,11 +30,16 @@ public class Render extends JPanel implements Runnable {
    int[] QuotientIdentities = new int[2];
    int[] PythagoreanIdentities = new int[2];
    int[] AllIdentities = new int[2];
-   Rectangle[] item = new Rectangle[13];
-   Rectangle[] target = new Rectangle[item.length];
-   boolean[] showItemSet = new boolean[item.length];
-   int[] itemIdentitiesMatchingSeed = randomOrderSeed(item.length);
-   int[] targetIdentitiesMatchingSeed = randomOrderSeed(item.length);
+   Rectangle[] identityItem = new Rectangle[13];
+   Rectangle[] identityTarget = new Rectangle[identityItem.length];
+   boolean[] showIdentityItemSet = new boolean[identityItem.length];
+   int[] itemIdentitiesMatchingSeed = randomOrderSeed(identityItem.length);
+   int[] targetIdentitiesMatchingSeed = randomOrderSeed(identityItem.length);
+   Rectangle[] triangleItem = new Rectangle[13];
+   Rectangle[] triangleTarget = new Rectangle[triangleItem.length];
+   boolean[] showTriangleItemSet = new boolean[triangleItem.length];
+   int[] itemTriangleMatchingSeed = randomOrderSeed(triangleItem.length);
+   int[] targetTriangleMatchingSeed = randomOrderSeed(triangleItem.length);
    int draggingItem;
    boolean dragging = false;
    int offsetX, offsetY;
@@ -92,7 +97,7 @@ public class Render extends JPanel implements Runnable {
                      GraphicElement.AllIdentitiesG(g, getWidth(), getHeight(), AllIdentities);
                      break;
                   case (4):
-                     GraphicElement.IdentitiesMatching(g, getWidth(), getHeight(), item, target, showItemSet,timer);
+                     GraphicElement.IdentitiesMatching(g, getWidth(), getHeight(), identityItem, identityTarget, showIdentityItemSet,timer);
                      break;
                   default:
                      GraphicElement.IdentityFlashcardsG(g);
@@ -161,11 +166,11 @@ public class Render extends JPanel implements Runnable {
 
          if(IdentityFlashcards[4]) {
             MatchingGame();
-            for (int i = 0; i < target.length; i++) {
+            for (int i = 0; i < identityTarget.length; i++) {
                if(targetIdentitiesMatchingSeed[i]<=6)
-                  target[i] = new Rectangle(getWidth()-150, 100+(targetIdentitiesMatchingSeed[i]*80), 100, 60);  // Drop target
+                  identityTarget[i] = new Rectangle(getWidth()-150, 100+(targetIdentitiesMatchingSeed[i]*80), 100, 60);  // Drop target
                if(targetIdentitiesMatchingSeed[i]>6)
-                  target[i] = new Rectangle(getWidth()-270, 100+((targetIdentitiesMatchingSeed[i]-7)*80), 100, 60);  // Drop target
+                  identityTarget[i] = new Rectangle(getWidth()-270, 100+((targetIdentitiesMatchingSeed[i]-7)*80), 100, 60);  // Drop target
             }
          }
 
@@ -190,53 +195,53 @@ public class Render extends JPanel implements Runnable {
 
    public void resetMatching(boolean HardReset){
       if(HardReset) {
-         targetIdentitiesMatchingSeed = randomOrderSeed(item.length);
-         itemIdentitiesMatchingSeed = randomOrderSeed(item.length);
+         targetIdentitiesMatchingSeed = randomOrderSeed(identityItem.length);
+         itemIdentitiesMatchingSeed = randomOrderSeed(identityItem.length);
       }
-      for(int i=0;i<item.length;i++) {
+      for(int i = 0; i< identityItem.length; i++) {
          if(itemIdentitiesMatchingSeed[i]<=6)
-            item[i] = new Rectangle(50, 100+(itemIdentitiesMatchingSeed[i]*80), 100, 60);  // Draggable item
+            identityItem[i] = new Rectangle(50, 100+(itemIdentitiesMatchingSeed[i]*80), 100, 60);  // Draggable item
          if(itemIdentitiesMatchingSeed[i]>6)
-            item[i] = new Rectangle(170, 100+((itemIdentitiesMatchingSeed[i]-7)*80), 100, 60);  // Draggable item
+            identityItem[i] = new Rectangle(170, 100+((itemIdentitiesMatchingSeed[i]-7)*80), 100, 60);  // Draggable item
          if(targetIdentitiesMatchingSeed[i]<=6)
-            target[i] = new Rectangle(getWidth()-150, 100+(targetIdentitiesMatchingSeed[i]*80), 100, 60);  // Drop target
+            identityTarget[i] = new Rectangle(getWidth()-150, 100+(targetIdentitiesMatchingSeed[i]*80), 100, 60);  // Drop target
          if(targetIdentitiesMatchingSeed[i]>6)
-            target[i] = new Rectangle(getWidth()-270, 100+((targetIdentitiesMatchingSeed[i]-7)*80), 100, 60);  // Drop target
-         showItemSet[i] = true;
+            identityTarget[i] = new Rectangle(getWidth()-270, 100+((targetIdentitiesMatchingSeed[i]-7)*80), 100, 60);  // Drop target
+         showIdentityItemSet[i] = true;
       }
    }
 
    public void MatchingGame() {
       if (mouse.event[m.mouse.released]) {
          dragging = false;
-         if (target[draggingItem].intersects(item[draggingItem])) {
-            showItemSet[draggingItem]=false;
+         if (identityTarget[draggingItem].intersects(identityItem[draggingItem])) {
+            showIdentityItemSet[draggingItem]=false;
          } else {
-            if(item[draggingItem].x<=(50+(120*(itemIdentitiesMatchingSeed[draggingItem]/8)))&&item[draggingItem].y<=(100+(80*(itemIdentitiesMatchingSeed[draggingItem]-(7*(itemIdentitiesMatchingSeed[draggingItem]/7))))))
-               item[draggingItem].setLocation((50+(120*(itemIdentitiesMatchingSeed[draggingItem]/7))) - ((int) Math.floor(0.97 * ((50.0+(120*(itemIdentitiesMatchingSeed[draggingItem]/7))) - item[draggingItem].x))), (100+(80*(itemIdentitiesMatchingSeed[draggingItem]-(7*(itemIdentitiesMatchingSeed[draggingItem]/7))))) - ((int) Math.floor(0.97 * ((100+(80.0*(itemIdentitiesMatchingSeed[draggingItem]-(7*(itemIdentitiesMatchingSeed[draggingItem]/7))))) - item[draggingItem].y))));
-            else if(item[draggingItem].x>=(50+(120*(itemIdentitiesMatchingSeed[draggingItem]/7)))&&item[draggingItem].y>=(100+(80*(itemIdentitiesMatchingSeed[draggingItem]-(7*(itemIdentitiesMatchingSeed[draggingItem]/7))))))
-               item[draggingItem].setLocation((50+(120*(itemIdentitiesMatchingSeed[draggingItem]/7))) - ((int) Math.ceil(0.97 * ((50.0+(120*(itemIdentitiesMatchingSeed[draggingItem]/7))) - item[draggingItem].x))), (100+(80*(itemIdentitiesMatchingSeed[draggingItem]-(7*(itemIdentitiesMatchingSeed[draggingItem]/7))))) - ((int) Math.ceil(0.97 * ((100+(80.0*(itemIdentitiesMatchingSeed[draggingItem]-(7*(itemIdentitiesMatchingSeed[draggingItem]/7))))) - item[draggingItem].y))));
-            else if(item[draggingItem].x<=(50+(120*(itemIdentitiesMatchingSeed[draggingItem]/7)))&&item[draggingItem].y>=(100+(80*(itemIdentitiesMatchingSeed[draggingItem]-(7*(itemIdentitiesMatchingSeed[draggingItem]/7))))))
-               item[draggingItem].setLocation((50+(120*(itemIdentitiesMatchingSeed[draggingItem]/7))) - ((int) Math.floor(0.97 * ((50.0+(120*(itemIdentitiesMatchingSeed[draggingItem]/7))) - item[draggingItem].x))), (100+(80*(itemIdentitiesMatchingSeed[draggingItem]-(7*(itemIdentitiesMatchingSeed[draggingItem]/7))))) - ((int) Math.ceil(0.97 * ((100+(80.0*(itemIdentitiesMatchingSeed[draggingItem]-(7*(itemIdentitiesMatchingSeed[draggingItem]/7))))) - item[draggingItem].y))));
-            else if(item[draggingItem].x>=(50+(120*(itemIdentitiesMatchingSeed[draggingItem]/7)))&&item[draggingItem].y<=(100+(80*(itemIdentitiesMatchingSeed[draggingItem]-(7*(itemIdentitiesMatchingSeed[draggingItem]/7))))))
-               item[draggingItem].setLocation((50+(120*(itemIdentitiesMatchingSeed[draggingItem]/7))) - ((int) Math.ceil(0.97 * ((50.0+(120*(itemIdentitiesMatchingSeed[draggingItem]/7))) - item[draggingItem].x))), (100+(80*(itemIdentitiesMatchingSeed[draggingItem]-(7*(itemIdentitiesMatchingSeed[draggingItem]/7))))) - ((int) Math.floor(0.97 * ((100+(80.0*(itemIdentitiesMatchingSeed[draggingItem]-(7*(itemIdentitiesMatchingSeed[draggingItem]/7))))) - item[draggingItem].y))));
+            if(identityItem[draggingItem].x<=(50+(120*(itemIdentitiesMatchingSeed[draggingItem]/8)))&& identityItem[draggingItem].y<=(100+(80*(itemIdentitiesMatchingSeed[draggingItem]-(7*(itemIdentitiesMatchingSeed[draggingItem]/7))))))
+               identityItem[draggingItem].setLocation((50+(120*(itemIdentitiesMatchingSeed[draggingItem]/7))) - ((int) Math.floor(0.97 * ((50.0+(120*(itemIdentitiesMatchingSeed[draggingItem]/7))) - identityItem[draggingItem].x))), (100+(80*(itemIdentitiesMatchingSeed[draggingItem]-(7*(itemIdentitiesMatchingSeed[draggingItem]/7))))) - ((int) Math.floor(0.97 * ((100+(80.0*(itemIdentitiesMatchingSeed[draggingItem]-(7*(itemIdentitiesMatchingSeed[draggingItem]/7))))) - identityItem[draggingItem].y))));
+            else if(identityItem[draggingItem].x>=(50+(120*(itemIdentitiesMatchingSeed[draggingItem]/7)))&& identityItem[draggingItem].y>=(100+(80*(itemIdentitiesMatchingSeed[draggingItem]-(7*(itemIdentitiesMatchingSeed[draggingItem]/7))))))
+               identityItem[draggingItem].setLocation((50+(120*(itemIdentitiesMatchingSeed[draggingItem]/7))) - ((int) Math.ceil(0.97 * ((50.0+(120*(itemIdentitiesMatchingSeed[draggingItem]/7))) - identityItem[draggingItem].x))), (100+(80*(itemIdentitiesMatchingSeed[draggingItem]-(7*(itemIdentitiesMatchingSeed[draggingItem]/7))))) - ((int) Math.ceil(0.97 * ((100+(80.0*(itemIdentitiesMatchingSeed[draggingItem]-(7*(itemIdentitiesMatchingSeed[draggingItem]/7))))) - identityItem[draggingItem].y))));
+            else if(identityItem[draggingItem].x<=(50+(120*(itemIdentitiesMatchingSeed[draggingItem]/7)))&& identityItem[draggingItem].y>=(100+(80*(itemIdentitiesMatchingSeed[draggingItem]-(7*(itemIdentitiesMatchingSeed[draggingItem]/7))))))
+               identityItem[draggingItem].setLocation((50+(120*(itemIdentitiesMatchingSeed[draggingItem]/7))) - ((int) Math.floor(0.97 * ((50.0+(120*(itemIdentitiesMatchingSeed[draggingItem]/7))) - identityItem[draggingItem].x))), (100+(80*(itemIdentitiesMatchingSeed[draggingItem]-(7*(itemIdentitiesMatchingSeed[draggingItem]/7))))) - ((int) Math.ceil(0.97 * ((100+(80.0*(itemIdentitiesMatchingSeed[draggingItem]-(7*(itemIdentitiesMatchingSeed[draggingItem]/7))))) - identityItem[draggingItem].y))));
+            else if(identityItem[draggingItem].x>=(50+(120*(itemIdentitiesMatchingSeed[draggingItem]/7)))&& identityItem[draggingItem].y<=(100+(80*(itemIdentitiesMatchingSeed[draggingItem]-(7*(itemIdentitiesMatchingSeed[draggingItem]/7))))))
+               identityItem[draggingItem].setLocation((50+(120*(itemIdentitiesMatchingSeed[draggingItem]/7))) - ((int) Math.ceil(0.97 * ((50.0+(120*(itemIdentitiesMatchingSeed[draggingItem]/7))) - identityItem[draggingItem].x))), (100+(80*(itemIdentitiesMatchingSeed[draggingItem]-(7*(itemIdentitiesMatchingSeed[draggingItem]/7))))) - ((int) Math.floor(0.97 * ((100+(80.0*(itemIdentitiesMatchingSeed[draggingItem]-(7*(itemIdentitiesMatchingSeed[draggingItem]/7))))) - identityItem[draggingItem].y))));
          }
       }
 
       if (mouse.event[m.mouse.dragged]) {
          if (dragging) {
-            item[draggingItem].setLocation(mouse.x - offsetX, mouse.y - offsetY);
+            identityItem[draggingItem].setLocation(mouse.x - offsetX, mouse.y - offsetY);
          }
       }
 
       if (mouse.event[m.mouse.pressed]) {
          if(!dragging)
-            for (int i = 0; i < item.length; i++)
-               if (item[i].contains(mouse.position)&&showItemSet[i]) {
+            for (int i = 0; i < identityItem.length; i++)
+               if (identityItem[i].contains(mouse.position)&&showIdentityItemSet[i]) {
                   draggingItem = i;
                   dragging = true;
-                  offsetX = mouse.x - item[i].x;
-                  offsetY = mouse.y - item[i].y;
+                  offsetX = mouse.x - identityItem[i].x;
+                  offsetY = mouse.y - identityItem[i].y;
                }
       }
    }
@@ -308,6 +313,10 @@ public class Render extends JPanel implements Runnable {
             AllTriangleRatiosL(false);
          else if (ClickBooleans.NextAllTriangleCard(x, y, TriangleFlashcards))
             RandomTriangleRatios();
+
+         /// Triangle Matching ///
+         else if(ClickBooleans.PlayTriangleMatching(x, y, TriangleFlashcards))
+
       }
       ///  Identities  ///
       ///  Identities' Back  ///
@@ -386,7 +395,16 @@ public class Render extends JPanel implements Runnable {
       TriangleFlashcards[2] = show;
       RandomTriangleRatios(); // chooses random ratio :)
    }
-   
+
+   public void TriangleMatchingL(boolean show){
+      TriangleFlashcards[3] = show;
+      resetMatching(true);
+      if(show)
+         SetRenderSize(1000,786);
+      else
+         SetRenderSize(700,500);
+   }
+
    // Triangle select random card //
    public void RandomFortyFiveTriangleRatios(){
       int i = random(1,3);
